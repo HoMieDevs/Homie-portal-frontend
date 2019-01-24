@@ -15,7 +15,6 @@ export default class Login extends Component {
         const data = { email, password }
         axios.post(url, data)
             .then(resp => {
-                    console.log(resp.user)
                     this.setState({ message: 'successfully logged in', error: null})
             })
             .catch(err => {
@@ -29,6 +28,7 @@ export default class Login extends Component {
         const { error, message } = this.state
         return (
             <>
+            <h1>HoMie CrEw</h1>
                 <h2>Sign In</h2>
                 <form>
      

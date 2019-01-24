@@ -1,7 +1,24 @@
-html {
-  background-color: #282828;
-  font-family: 'Noto Sans', sans-serif;
+@font-face {
+  font-family: 'Circular';
+  src: url('./fonts/Circular-Bold.woff2') format('woff2'),
+      url('./fonts/Circular-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
 }
+
+
+
+html, body {
+  background-color: #282828;
+  font-family: 'Circular', sans-serif;
+}
+
+h1 {
+  font-size: 4em;
+  font-family: 'Circular', sans-serif;
+  color: #fff;
+}
+
 .App {
   text-align: center;
 }

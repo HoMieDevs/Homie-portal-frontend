@@ -13,7 +13,7 @@ class Form extends Component {
   submitForm = (e) => {
     e.preventDefault();
     const { email, password } = this.state;
-    const url = "http://localhost:5000/";
+    const url = "http://localhost:5000/auth/login";
     const data = {
       email,
       password
@@ -23,6 +23,7 @@ class Form extends Component {
       .then(resp => {
         const { token } = resp.data;
         localStorage.setItem('token', token);
+        console.log(resp)
         // RE-ROUTE TO HOMEPAGE
         this.setState({ message: 'Successfully signed in.', error: undefined });
       })

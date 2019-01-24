@@ -1,5 +1,40 @@
+html {
+  background-color: #282828;
+  font-family: 'Noto Sans', sans-serif;
+}
 .App {
   text-align: center;
+}
+
+.loginLabel {
+  color: #3CBCD7;
+}
+
+.forgotPass {
+  color: #3CBCD7;
+}
+
+.homieLogoLogin {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.loginBtn {
+  text-decoration: none;
+  font-weight: 800;
+  cursor: pointer;
+  border: 1px solid #282828;
+  border-radius: 8px;
+  height: 2.6em;
+  width: 10em;
+  padding: 0;
+  outline: none;
+  overflow: hidden;
+  color: #282828;
+  background-color: #3CBCD7;
+  transition: color 0.3s 0.1s ease-out;
+  text-align: center;
+  box-shadow:         inset 0px -1px 10px #333;
 }
 
 .App-logo {

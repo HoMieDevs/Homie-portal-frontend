@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import './index.css';
+import homieLogo from './homieLogo.svg';
 
 class Form extends Component {
   state = {};
@@ -59,16 +61,19 @@ class Form extends Component {
     const { error, message } = this.state;
     return (
       <>
+        <img className="homieLogoLogin" src={homieLogo} alt="homie logo"/>
         <form>
-          <label htmlFor="email">Email: </label>
-          <input type="text" id="email" onChange={this.handleInputChange} />
-          <label htmlFor="password">Password: </label>
-          <input type="password" id="password" onChange={this.handleInputChange} />
-          <button onClick={this.submitForm}>Login</button>
+          <label className="loginLabel" htmlFor="email">Email: </label>
+          <input className="loginInput" type="text" id="email" onChange={this.handleInputChange} />
+          <label className="loginLabel" htmlFor="password">Password: </label>
+          <input className="loginInput" type="password" id="password" onChange={this.handleInputChange} />
+          <button className="loginBtn" onClick={this.submitForm}>LOGIN</button>
+          <a className="forgotPass" href="www.google.com">Forgot Password?</a>
         </form>
         { error && <p>{ error }</p> }
         { message && <p>{ message }</p> }
         {/* <button onClick={this.handleProtectedRequest}>Request protected</button> */}
+
       </>
     );
   }

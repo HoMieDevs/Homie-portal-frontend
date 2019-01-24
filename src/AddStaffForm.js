@@ -26,7 +26,7 @@ class Form extends Component {
           return alert('first name required')
         }
         if (!lastName) {
-          alert('last name required')
+          return alert('last name required')
         }
         if (!email) {
           alert('email required')

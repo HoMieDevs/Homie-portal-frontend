@@ -1,42 +1,37 @@
-// ___ _   _ ___   _  _  ___  __  __ ___ ___ ___ _ 
-// / __| | | | _ \ | || |/ _ \|  \/  |_ _| __/ __| |
-// \__ \ |_| |  _/ | __ | (_) | |\/| || || _|\__ \_|
-// |___/\___/|_|   |_||_|\___/|_|  |_|___|___|___(_)
-
 import React, { Component } from 'react'
 import axios from 'axios'
 axios.defaults.withCredentials = true;
 
 export default class Login extends Component {
-    state = { }
-    handleInputChange = (e) => {
-        const { value, id } = e.currentTarget;
-        this.setState({ [id]: value})
-    }
-    submitForm = (e) => {
-        e.preventDefault()
-        // console.log(this.state)
-        const { email, password } = this.state
-        const url = "http://localhost:5000/auth/login"
-        const data = { email, password }
-        axios.post(url, data)
-            .then(resp => {
-                    this.setState({ message: 'successfully logged in', error: null})
-                    axios.get('http://locahost:5000/auth/me')
-                        .then(resp => console.log(resp.data))
-            })
-            .catch(err => {
-                console.log(err.response)
-                if (err.response === 403) {
-                    this.setState({ error: 'bad credentials', message: null})
-                }
-            })
-    }
-    
-    render() {
-        const { error, message } = this.state
-        return (
-            <>
+  state = { }
+  handleInputChange = (e) => {
+    const { value, id } = e.currentTarget;
+    this.setState({ [id]: value})
+  }
+  submitForm = (e) => {
+    e.preventDefault()
+    // console.log(this.state)
+    const { email, password } = this.state
+    const url = "http://localhost:5000/auth/login"
+    const data = { email, password }
+    axios.post(url, data)
+    .then(resp => {
+      this.setState({ message: 'successfully logged in', error: null})
+      axios.get('http://locahost:5000/auth/me')
+      .then(resp => console.log(resp.data))
+    })
+    .catch(err => {
+      console.log(err.response)
+      if (err.response === 403) {
+        this.setState({ error: 'bad credentials', message: null})
+      }
+    })
+  }
+  
+  render() {
+    const { error, message } = this.state
+    return (
+      <>
                 <h1>HoMie CrEw</h1>
                 <h2>Sign In</h2>
                 <form>
@@ -52,4 +47,8 @@ export default class Login extends Component {
             </>
     )
   }
+  // ___ _   _ ___   _  _  ___  __  __ ___ ___ ___ _ 
+  // / __| | | | _ \ | || |/ _ \|  \/  |_ _| __/ __| |
+  // \__ \ |_| |  _/ | __ | (_) | |\/| || || _|\__ \_|
+  // |___/\___/|_|   |_||_|\___/|_|  |_|___|___|___(_)
 }

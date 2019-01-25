@@ -13,7 +13,7 @@ class Form extends Component {
   submitForm = (e) => {
     e.preventDefault();
     const { email, password } = this.state;
-    const url = "http://localhost:5000/";
+    const url = "http://localhost:5000/auth/login";
     const data = {
       email,
       password
@@ -23,6 +23,7 @@ class Form extends Component {
       .then(resp => {
         const { token } = resp.data;
         localStorage.setItem('token', token);
+        console.log(resp)
         // RE-ROUTE TO HOMEPAGE
         this.setState({ message: 'Successfully signed in.', error: undefined });
       })
@@ -64,9 +65,9 @@ class Form extends Component {
         <img className="homieLogoLogin" src={homieLogo} alt="homie logo"/>
         <form>
           <label className="loginLabel" htmlFor="email">Email: </label>
-          <input className="loginInput" type="text" id="email" onChange={this.handleInputChange} />
+          <input className="loginInput" type="text" id="email" placeholder="Email" onChange={this.handleInputChange} />
           <label className="loginLabel" htmlFor="password">Password: </label>
-          <input className="loginInput" type="password" id="password" onChange={this.handleInputChange} />
+          <input className="loginInput" type="password" id="password" placeholder="Password" onChange={this.handleInputChange} />
           <button className="loginBtn" onClick={this.submitForm}>LOGIN</button>
           <a className="forgotPass" href="www.google.com">Forgot Password?</a>
         </form>

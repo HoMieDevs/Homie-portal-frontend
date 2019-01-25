@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+axios.defaults.withCredentials = true;
 
 export default class Register extends Component {
     state = { }
@@ -15,7 +16,8 @@ export default class Register extends Component {
         const data = { firstName, lastName, mobile, email, password }
         axios.post(url, data)
             .then(resp => {
-                    this.setState({ message: `${firstName} has been added`, error: null})
+                console.log(resp)
+                this.setState({ message: `${firstName} has been added`, error: null})
             })
             .catch(err => {
                 console.log(err.response)
@@ -40,8 +42,6 @@ export default class Register extends Component {
                     <input type="password" id="password" onChange={this.handleInputChange}/><br/>
                     <label htmlFor="mobile">Mobile</label>
                     <input type="string" id="mobile" onChange={this.handleInputChange}/><br/>
-            
-
                     <button onClick={this.submitForm}>Add Staff</button>
                 </form>
 

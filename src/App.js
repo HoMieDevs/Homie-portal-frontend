@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Login from './Login'
 import Register from './Register'
-import Header from './Header'
+import Home from './Home'
 import { BrowserRouter, Route } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUser, faSignOutAlt, faCalendarAlt, faCalendarTimes,  faClock, faSync, faChevronUp} from '@fortawesome/free-solid-svg-icons'
@@ -17,7 +17,7 @@ class App extends Component {
           <div className="App">
           <Route exact path="/" component={Login} />
           <Route path="/addstaff" component={Register} />
-          <Route path="/header" component={Header} />
+          <Route path="/home" component={Home} />
           </div>
         </BrowserRouter>
         </div>

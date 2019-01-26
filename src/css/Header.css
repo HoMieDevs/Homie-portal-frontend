@@ -12,16 +12,12 @@
   font-weight: normal;
   font-style: normal;
 }
-* {
-  margin: 0;
-  padding: 0;
-}
 
 .headerContainer { 
   display: grid;
   height: 5.875em;
   background-color: #282828;
-  width: 100%;
+  width: 100vw;
   grid-template-columns: auto 52% auto;
 }
 

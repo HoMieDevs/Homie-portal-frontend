@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import homieLogo from './homieLogo.svg';
-import './App.css';
+import './css/Login.css';
 axios.defaults.withCredentials = true;
 
 export default class Login extends Component {

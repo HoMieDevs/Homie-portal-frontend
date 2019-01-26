@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import './App.css';
 import Login from './Login'
 import Register from './Register'
-import Protected from './Protected'
+import Header from './Header'
 import { BrowserRouter, Route } from 'react-router-dom';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faUser, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faUser, faSignOutAlt);
 
 
 class App extends Component {
@@ -14,7 +17,7 @@ class App extends Component {
           <div className="App">
           <Route exact path="/" component={Login} />
           <Route path="/addstaff" component={Register} />
-          <Route path="/test-protected" component={Protected} />
+          <Route path="/header" component={Header} />
           </div>
         </BrowserRouter>
         </div>

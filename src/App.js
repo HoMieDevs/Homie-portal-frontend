@@ -4,9 +4,9 @@ import Register from './Register'
 import Header from './Header'
 import { BrowserRouter, Route } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUser, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faSignOutAlt, faCalendarAlt, faCalendarTimes,  faClock, faSync, faChevronUp} from '@fortawesome/free-solid-svg-icons'
 
-library.add(faUser, faSignOutAlt);
+library.add(faUser, faSignOutAlt, faCalendarAlt, faCalendarTimes, faClock, faSync, faChevronUp );
 
 
 class App extends Component {

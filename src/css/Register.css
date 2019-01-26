@@ -20,26 +20,28 @@
   width: 100vw;
 }
 
+.registerForm {
+  display: grid;
+  font-size: 16px;
+  font-family: 'Circular';
+  grid-template-rows: repeat(7, 1fr);
+  grid-row-gap: .8em;
+}
+
 .registerField {
   display: grid;
   grid-template-columns: 45% 45% 10%;
-  grid-template-columns: auto * 6;
-  margin-bottom: 0.8em;
 }
 
-form {
-  font-size: 16px;
-  font-family: 'Circular';
-}
-
-h3 {
+.registerH3 {
   font-size: 24px;
   font-family: 'Circular';
   padding-top: 1em;
   padding-bottom: 1em;
+  text-align: center;
 }
 
-form .registerField label {
+.registerForm .registerField label {
   grid-column-start: 1;
   grid-column-end: 2;
   justify-self: center;
@@ -59,15 +61,14 @@ form .registerField label {
   border: 1.5px solid #868686;
 }
 
-form .registerField input:focus {
+.registerForm .registerField input:focus {
   outline: none;
-  border: 2.5px solid #3CBCD7;
-  border-radius: 10px;
+  border: inset 2.5px solid #3CBCD7;
+  /* border-radius: 10px; */
   background-color: rgb(240, 253, 255);
 }
 
 .registerStaffBtn {
-  margin-top: 0.5em;
   font-family: 'Circular Book';
   font-size: 16px;
   background-color: #282828;
@@ -76,4 +77,6 @@ form .registerField input:focus {
   height: 36px;
   border: 3px solid #3CBCD7;
   border-radius: 10px;
+  justify-self: center;
+  align-self: end;
 }

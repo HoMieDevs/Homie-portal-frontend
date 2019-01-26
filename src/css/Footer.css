@@ -17,42 +17,62 @@
   padding: 0;
 }
 
-.headerContainer { 
+.footerContainer { 
+  position: fixed;
+  bottom: 0px;
   display: grid;
-  height: 5.875em;
+  height: 4em;
   background-color: #282828;
   width: 100%;
-  grid-template-columns: auto 52% auto;
+  grid-template-columns: repeat(5, 1fr);
 }
 
-.avatarBorder {
-  grid-column-start: 1;
-  grid-column-end: 2;
-  padding: .3em;
-  border: 3px solid #fff;
-  border-radius: 100%;;
-  align-self: center;
-  justify-self: end;
-}
-
-.homieLogo {
-  height: 3.5em;
-  width: auto;
+.calendar {
+  grid-column-start: span 1;
+  grid-column-end: span 2;
   align-self: center;
   justify-self: center;
-  grid-column-start: 2;
-  grid-column-end: 3;
 }
 
-.signOut {
+.timeOff {
+  grid-column-start: 2;
+  grid-column-end: 3;
   align-self: center;
-  justify-self: start;
-  grid-column: 3 / 4;
+  justify-self: center;
 }
+.hours {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  align-self: center;
+  justify-self: center;
+}
+.swapShift {
+  grid-column-start: 4;
+  grid-column-end: 5;
+  align-self: center;
+  justify-self: center;
+}
+.moreMenu {
+  grid-column-start: 5;
+  grid-column-end: 6;
+  align-self: center;
+  justify-self: center;
+}
+
+.moreIcon {
+  padding: 2.8px 3.5px;
+  border: 1.5px solid white;
+  border-radius: 5px;
+  margin-bottom: -3px; 
+}
+
 
 p {
   padding-top: 0.2em;
   font-size: 12px;
   font-family: 'Circular Book';
   color: #fff;
+}
+.moreText {
+ padding-top: none;
 }

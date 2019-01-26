@@ -14,41 +14,85 @@
   font-style: normal;
 }
 
+
+
 .loginContainer {
+  display: grid;
+  grid-template-rows: 4fr 3fr 1fr 4fr 3fr;
   height: 100vh;
   width: 100vw;
-  display: flex;
-  flex-flow: column;
   background-color: #282828;
   font-family: 'Circular', sans-serif;
   margin: 0;
   padding: 0;
   font-size: 16px;
-  /* display: grid; */
 }
 
 .homieLogoLogin {
-  margin-top: 5em;
-  margin-bottom: 1em;
+  grid-row-start: 2;
+  grid-row-end: 3;
   height: 8em;
   width: auto;
   align-self: center;
+  justify-self: center;
   padding: 0em;
 
 }
 
-h1 {
+.loginH1 {
+  grid-row-start: 3;
+  grid-row-end: 4;
   padding-top: 0.5em;
   padding-bottom: 0.3em;
-}
-
-
-
-.loginContainer h1 {
   font-size: 3em;
   font-family: 'Circular', sans-serif;
   line-height: 1em;
   color: #fff;
+}
+
+.crewBlue {
+  color: #3CBCD7;
+}
+
+.loginForm {
+  grid-row-start: 4;
+  grid-row-end: 5;
+  display: grid;
+  grid-template-rows: repeat(7, 1fr);
+  grid-template-columns: repeat(2, 1fr)
+}
+
+.loginEmailLb {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  justify-self: center;
+  align-self: center;
+}
+.loginEmailIn {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  justify-self: center;
+  align-self: center;
+}
+.loginPassLb {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  justify-self: center;
+  align-self: center;
+}
+.loginPassIn {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 4;
+  grid-row-end: 5;
+  justify-self: center;
+  align-self: center;
 }
 
 .loginLabel {
@@ -74,28 +118,14 @@ h1 {
   background-color: rgb(240, 253, 255);
 }
 
-.crewBlue {
-  color: #3CBCD7;
-}
-
-.App {
-  width: 100%;
-  height: 100%;
-  text-align: center;
-}
-
-.forgotPass {
-  color: #3CBCD7;
-  font-size: 0.875em;
-  font-family: 'Circular Book', sans-serif;
-}
-
-.forgotPass:hover {
-  color: rgb(48, 159, 181);
-}
-
 .loginBtn {
-  margin-right: 1.8em;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 5;
+  grid-row-end: 6;
+  justify-self: end;
+  align-self: center;
+  margin-right: 1.3em;
   font-family: 'Circular', sans-serif;
   text-decoration: none;
   font-size: 0.875em;
@@ -120,5 +150,21 @@ h1 {
 .loginBtn:active {
   background-color: rgb(43, 139, 159);
   border-color: #205260;
-  
+}
+
+.forgotPass {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 5;
+  grid-row-end: 6;
+  justify-self: start;
+  align-self: center;
+  margin-left: 1.3em;
+  color: #3CBCD7;
+  font-size: 0.875em;
+  font-family: 'Circular Book', sans-serif;
+}
+
+.forgotPass:hover {
+  color: rgb(48, 159, 181);
 }

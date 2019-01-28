@@ -1,0 +1,78 @@
+@font-face {
+  font-family: 'Circular';
+  src: url('/../fonts/Circular-Bold.woff2') format('woff2'),
+      url('/../fonts/Circular-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Circular Book';
+  src: url('/../fonts/Circular-Book.woff2') format('woff2'),
+      url('/../fonts/Circular-Book.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.footerContainer { 
+  position: fixed;
+  bottom: 0px;
+  display: grid;
+  height: 4em;
+  background-color: #282828;
+  width: 100%;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.calendar {
+  grid-column-start: span 1;
+  grid-column-end: span 2;
+  align-self: center;
+  justify-self: center;
+}
+
+.timeOff {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  align-self: center;
+  justify-self: center;
+}
+.hours {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  align-self: center;
+  justify-self: center;
+}
+.swapShift {
+  grid-column-start: 4;
+  grid-column-end: 5;
+  align-self: center;
+  justify-self: center;
+}
+.moreMenu {
+  grid-column-start: 5;
+  grid-column-end: 6;
+  align-self: center;
+  justify-self: center;
+}
+
+.moreIcon {
+  padding: 2.8px 3.5px;
+  border: 1.5px solid white;
+  border-radius: 5px;
+  margin-bottom: -3px; 
+}
+
+
+p {
+  padding-top: 0.2em;
+  font-size: 12px;
+  font-family: 'Circular Book';
+  color: #fff;
+}
+.moreText {
+ padding-top: none;
+}

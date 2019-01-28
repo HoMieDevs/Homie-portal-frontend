@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import Header from './Header';
+import Footer from './Footer';
 import './css/Register.css'
 axios.defaults.withCredentials = true;
 
@@ -33,8 +34,8 @@ export default class Register extends Component {
         return (
             <div className="register">
                 <Header />
-                <h3>Add Staff</h3>
-                <form>
+                <h3 className="registerH3">Add Staff</h3>
+                <form className="registerForm">
                     <div className="registerField">
                         <label htmlFor="firstName">First Name:</label>
                         <input 
@@ -104,6 +105,7 @@ export default class Register extends Component {
                 </form>
                 { error && <p>{ error }</p> }
                 { message && <p>{ message }</p>}
+                <Footer />
             </div>
 
     )

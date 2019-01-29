@@ -68,7 +68,7 @@ export default class Navigation extends Component {
             color="#fff"
             size="lg"
           />
-          <spam className="signOutText">Sign Out</spam>
+          <span className="signOutText">Sign Out</span>
         </NavLink>
       </header>
 

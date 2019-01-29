@@ -105,7 +105,6 @@ export default class Register extends Component {
                 { error && <p>{ error }</p> }
                 { message && <p>{ message }</p>}
             </div>
-
     )
   }
 }

@@ -1,0 +1,137 @@
+@font-face {
+  font-family: 'Circular';
+  src: url('/../fonts/Circular-Bold.woff2') format('woff2'),
+      url('/../fonts/Circular-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Circular Book';
+  src: url('/../fonts/Circular-Book.woff2') format('woff2'),
+      url('/../fonts/Circular-Book.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+/*<<<<<<< HEADER >>>>>>>>*/
+
+.headerContainer { 
+  display: grid;
+  height: 5.875em;
+  background-color: #282828;
+  width: 100vw;
+  grid-template-columns: auto 52% auto;
+}
+
+.avatarContainer {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  display: grid;
+  align-self: center;
+  justify-self: end;
+}
+
+.avatarLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  width: 38px;
+  color: #fff;
+  padding: .2em .2em;
+  border: 3px solid #fff;
+  border-radius: 100%;
+}
+
+.avatarLink svg {
+  padding-bottom: .15em;
+}
+
+.homieLogoMain {
+  align-self: center;
+  justify-self: center;
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
+.homieLogo {
+  height: 3.5em;
+  width: auto;
+}
+
+.signOut {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  justify-self: start;
+  grid-column: 3 / 4;
+  text-decoration: none;
+}
+
+.signOutText {
+  padding-top: 0.2em;
+  font-size: 12px;
+  font-family: 'Circular Book';
+  color: #fff;
+}
+
+
+/*<<<<<<< FOOTER >>>>>>>>*/
+
+.footerContainer { 
+  position: fixed;
+  bottom: 0px;
+  display: grid;
+  height: 4em;
+  background-color: #282828;
+  width: 100%;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.calendar, .timeOff, .hoursNav {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 3fr 3fr;
+  align-self: center;
+  justify-self: center;
+  font-size: 12px;
+  font-family: 'Circular Book';
+  color: #fff;
+  text-decoration: none;
+}
+
+.calendarIcon, .unavailIcon, .clockIcon {
+  justify-self: center;
+  align-self: end;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  padding-top: none;
+}
+
+.rosterText, .timeOffText, .hoursText {
+  padding-top: .2em;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.calendar {
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+.timeOff {
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+.hours {
+  grid-column-start: 3;
+  grid-column-end: 4;
+}

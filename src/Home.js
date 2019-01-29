@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import axios from 'axios';
-import Header from './Header';
-import Footer from './Footer';
+// import Header from './Header';
+import Navigation from './Navigation';
 import './css/Home.css'
 axios.defaults.withCredentials = true;
 
@@ -10,7 +10,7 @@ export default class Home extends Component {
   render() {
     return (
       <Fragment>
-        <Header />
+        <Navigation />
         <div className="home">
           <h3>Upcoming Shifts</h3>
           <div className="homeShiftContainer">
@@ -48,7 +48,6 @@ export default class Home extends Component {
           <h3>Hours Worked</h3>
           <p className="homeBook">8 Hours</p>
         </div>
-        <Footer />
       </Fragment>
     )
   }

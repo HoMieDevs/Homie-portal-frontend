@@ -14,6 +14,20 @@
   font-style: normal;
 }
 
+.selectBox {
+  display: grid;
+  grid-template-columns: 2em auto 2em;
+}
+
+.rosterSelect {
+  justify-self: center;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  width: 200px;
+  font-family: 'Circular';
+  font-size: 18px;
+}
+
 .dayContainer {
   width: 22.75em;
   height: 4.375em;

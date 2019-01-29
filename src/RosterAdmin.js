@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import axios from 'axios';
-import Header from './Header';
-import Footer from './Footer';
+import Navigation from './Navigation';
 import './css/RosterAdmin.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 axios.defaults.withCredentials = true;
@@ -11,7 +10,7 @@ export default class RosterAdmin extends Component {
   render() {
     return (
       <Fragment>
-        <Header/>
+        <Navigation/>
           <div className="weekRoster">
             <div className="dayContainer">
               <div className="addStaffBtn">
@@ -196,7 +195,6 @@ export default class RosterAdmin extends Component {
               </div>
             </div>
           </div>
-        <Footer/>
       </Fragment>
     )
   }

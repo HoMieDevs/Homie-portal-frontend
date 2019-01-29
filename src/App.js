@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Login from './Login'
 import Register from './Register'
 import Home from './Home'
+import Roster from './Roster'
 import { BrowserRouter, Route } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUser, faSignOutAlt, faCalendarAlt, faCalendarTimes,  faClock, faSync, faChevronUp, faUserPlus} from '@fortawesome/free-solid-svg-icons'
@@ -12,7 +13,6 @@ import MyInfo from './MyInfo';
 import ReportHours from './ReportHours';
 
 library.add(faUser, faSignOutAlt, faCalendarAlt, faCalendarTimes, faClock, faSync, faChevronUp, faUserPlus );
-
 
 class App extends Component {
   render() {
@@ -28,6 +28,7 @@ class App extends Component {
           <Route path="/timeoff" component={TimeOff} />
           <Route path="/myinfo" component={MyInfo} />
           <Route path="/report" component={ReportHours} />
+            <Route path="/roster/:id" component={Roster} />
           </div>
         </BrowserRouter>
         </div>

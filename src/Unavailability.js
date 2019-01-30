@@ -8,7 +8,12 @@ axios.defaults.withCredentials = true;
 export default class Register extends Component {
   state = {
     unavailability: [{
-        date:Date
+        date: Date,
+        allDay: Boolean,
+        startTime: String,
+        endTime: String,
+        comment: String,
+        approved: Boolean
     }],
   }
     handleInputChange = (e) => {
@@ -19,18 +24,20 @@ export default class Register extends Component {
     submitForm = (e) => {
         e.preventDefault()
         // console.log(this.state)
-        const date ={ date: this.state.date}
-        const unavailability = this.state.unavailability.push(date)
+        // const date ={ date: this.state.date}
+        // const unavailability = this.state.unavailability.push(date)
         // console.log(this.state.unavailability)
         // console.log(this.state)
+        const { unavailability: [{date, allDay, startTime, endTime, comment, approved}]} = this.state
+
         const url = "http://localhost:5000/auth/unavailability/5c4a9b4dc8989d0ff203c621"
-        const data = {date}
+        const data = { unavailability: [{date, allDay, startTime, endTime, comment, approved}] }
         // console.log(data)
         axios.put(url, data)
-            .then(console.log(data))
             .then(resp => {
+                console.log('hello kam is a noob.she has gained weight and trying to lose')
                 console.log(resp.data)
-                this.setState({ message: `${unavailability} has been added`, error: null})
+                this.setState({ message: `${date} has been added`, error: null})
             })
             .catch(err => {
                 console.log(err.response)
@@ -49,11 +56,66 @@ export default class Register extends Component {
                     <div className="registerField">
                         <label htmlFor="date">date:</label>
                         <input 
-                            type="string" 
+                            type="date" 
                             id="date" 
                             placeholder="date" 
                             onFocus={(e) => e.target.placeholder = ""} 
                             onBlur={(e) => e.target.placeholder = "date"} 
+                            onChange={this.handleInputChange}
+                        />
+                    </div>
+                    <div className="registerField">
+                        <label htmlFor="allDay">allDay:</label>
+                        <input 
+                            type="boolean" 
+                            id="allDay" 
+                            placeholder="allDay" 
+                            onFocus={(e) => e.target.placeholder = ""} 
+                            onBlur={(e) => e.target.placeholder = "allDay"} 
+                            onChange={this.handleInputChange}
+                        />
+                    </div>
+                    <div className="registerField">
+                        <label htmlFor="startTime">startTime:</label>
+                        <input 
+                            type="string" 
+                            id="startTime" 
+                            placeholder="startTime" 
+                            onFocus={(e) => e.target.placeholder = ""} 
+                            onBlur={(e) => e.target.placeholder = "startTime"} 
+                            onChange={this.handleInputChange}
+                        />
+                    </div>
+                    <div className="registerField">
+                        <label htmlFor="endTime">endTime:</label>
+                        <input 
+                            type="string" 
+                            id="endTime" 
+                            placeholder="endTime" 
+                            onFocus={(e) => e.target.placeholder = ""} 
+                            onBlur={(e) => e.target.placeholder = "endTIme"} 
+                            onChange={this.handleInputChange}
+                        />
+                    </div>
+                    <div className="registerField">
+                        <label htmlFor="comment">Comment:</label>
+                        <input 
+                            type="string" 
+                            id="comment" 
+                            placeholder="comment" 
+                            onFocus={(e) => e.target.placeholder = ""} 
+                            onBlur={(e) => e.target.placeholder = "comment"} 
+                            onChange={this.handleInputChange}
+                        />
+                    </div>
+                    <div className="registerField">
+                        <label htmlFor="approved">approved:</label>
+                        <input 
+                            type="boolean" 
+                            id="approved" 
+                            placeholder="approved" 
+                            onFocus={(e) => e.target.placeholder = ""} 
+                            onBlur={(e) => e.target.placeholder = "approved"} 
                             onChange={this.handleInputChange}
                         />
                     </div>

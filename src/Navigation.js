@@ -20,9 +20,6 @@ export default class Navigation extends Component {
   return (
     <React.Fragment>
 
-
-
-
       <header className="headerContainer">
 
         {/* >>>>>>>>>>>>>>>>>>>> AVATAR */}

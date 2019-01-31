@@ -7,11 +7,9 @@ export default class RosterAdd extends Component {
   state = {
       date: null,
       location: null,
-      staff: {
-        staffMember: null,
-        startTime: null,
-        endTime: null
-    }
+      staffMember: null,
+      startTime: null,
+      endTime: null
   }
 
   handleInputChange = (e) => {
@@ -25,12 +23,17 @@ export default class RosterAdd extends Component {
 
   submitForm = (e) => {
     e.preventDefault()
-    // console.log(this.state)
+    console.log(this.state)
     // const { staffMember, startTime, endTime} = this.state.newShift
-    const { date, location, staff: {staffMember, startTime, endTime} } = this.state
+    const { date, location, staffMember, startTime, endTime } = this.state
     const url = "http://localhost:5000/auth/roster"
     // const data = { staffMember, startTime, endTime}
-    const data = { date, location, staff: {staffMember, startTime, endTime} }
+    const staff = [{
+      staffMember,
+      startTime,
+      endTime
+    }]
+    const data = { date, location, staff }
     axios.post(url, data)
       .then(resp => {
         console.log(resp)

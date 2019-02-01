@@ -25,11 +25,12 @@ export default class Unavailability extends Component {
     e.preventDefault();
     console.log(this.state);
     const { date, allDay, startTime, endTime, comment } = this.state;
-    // const userId = localStorage.getItem("userId");
-    const url =
-      "http://localhost:5000/auth/unavailability/5c490ad5d0df64349e49d792/";
+    const userId = localStorage.getItem("userId");
 
-    // const url = `http://localhost:5000/auth/unavailability/${userID}/`;
+    // const url =
+    //   "http://localhost:5000/auth/unavailability/5c490ad5d0df64349e49d792/";
+
+    const url = `http://localhost:5000/auth/unavailability/${userId}/`;
 
     const unavailability = [
       {

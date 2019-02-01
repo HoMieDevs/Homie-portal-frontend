@@ -9,14 +9,16 @@ class SubmitUnavailability extends Component {
   };
 
   componentDidMount() {
+    const userId = localStorage.getItem("userId");
     axios
-      .get("http://localhost:5000/auth/unavailibility/5c490ad5d0df64349e49d792")
+      .get(`http://localhost:5000/auth/unavailibility/${userId}`)
       .then(resp => this.setState(resp.data));
   }
 
   componentDidUpdate() {
+    const userId = localStorage.getItem("userId");
     axios
-      .get("http://localhost:5000/auth/unavailibility/5c490ad5d0df64349e49d792")
+      .get(`http://localhost:5000/auth/unavailibility/${userId}`)
       .then(resp => this.setState(resp.data));
   }
 

@@ -92,10 +92,10 @@
   height: 4em;
   background-color: #282828;
   width: 100%;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 }
 
-.calendar, .timeOff, .hoursNav {
+.calendar, .timeOff, .hoursNav, .homeNav {
   height: 100%;
   width: 100%;
   display: grid;
@@ -108,7 +108,7 @@
   text-decoration: none;
 }
 
-.calendarIcon, .unavailIcon, .clockIcon {
+.calendarIcon, .unavailIcon, .clockIcon, .homeIcon {
   justify-self: center;
   align-self: end;
   grid-row-start: 1;
@@ -116,22 +116,27 @@
   padding-top: none;
 }
 
-.rosterText, .timeOffText, .hoursText {
+.rosterText, .timeOffText, .hoursText, .homeText {
   padding-top: .2em;
   grid-row-start: 2;
   grid-row-end: 3;
 }
 
-.calendar {
+.home {
   grid-column-start: 1;
   grid-column-end: 2;
 }
 
-.timeOff {
+.calendar {
   grid-column-start: 2;
   grid-column-end: 3;
 }
-.hours {
+
+.timeOff {
   grid-column-start: 3;
   grid-column-end: 4;
+}
+.hours {
+  grid-column-start: 4;
+  grid-column-end: 5;
 }

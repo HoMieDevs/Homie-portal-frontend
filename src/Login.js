@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom';
 import axios from 'axios'
 import homieLogo from './images/homieLogo.svg';
 import './css/Login.css';
@@ -6,19 +7,26 @@ axios.defaults.withCredentials = true;
 
 export default class Login extends Component {
   state = { }
-  handleInputChange = (e) => {
-    const { value, id } = e.currentTarget;
-    this.setState({ [id]: value})
-  }
+
   submitForm = (e) => {
     e.preventDefault()
-    // console.log(this.state)
-    const { email, password } = this.state
+    const email = e.target.form[0].value
+    const password = e.target.form[1].value
+    const user = {
+      email,
+      password
+    }
     const url = "http://localhost:5000/auth/login"
-    const data = { email, password }
-    axios.post(url, data)
+    axios.post(url, user)
     .then(resp => {
+      console.log(resp)
+      localStorage.setItem('isAuthenticated', true);
+      localStorage.setItem('userId', resp.data.userId);
       this.setState({ message: 'successfully logged in', error: null})
+      console.log(resp.data.admin)
+      resp.data.admin ?
+      localStorage.setItem('isAdmin', true)
+      : localStorage.setItem('isAdmin', false);
       // axios.get('http://locahost:5000/auth/me')
       // .then(resp => console.log(resp.data))
     })
@@ -32,7 +40,10 @@ export default class Login extends Component {
   
   render() {
     const { error, message } = this.state
+    const isAuth = localStorage.getItem('isAuthenticated')
+    const { from } = this.props.location.state || { from: { pathname: '/home'} }
     return (
+      !isAuth ?
       <div className="loginContainer">
         <img className="homieLogoLogin" src={homieLogo} alt="homie logo"/>
         <h1 className="loginH1">HoMie <span className="crewBlue">CrEw</span></h1>
@@ -64,6 +75,8 @@ export default class Login extends Component {
         { error && <p>{ error }</p> }
         { message && <p>{ message }</p>}
       </div>
+    :
+    <Redirect to={ from } />
     )
   }
 }

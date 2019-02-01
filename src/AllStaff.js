@@ -23,6 +23,7 @@ export default class AllStaff extends Component {
     return (
       <Fragment>
         <Navigation />
+        <h2>All Staff</h2>
           <div className="allStaff">
               {allStaff.map(s => {
                    return <div>

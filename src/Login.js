@@ -19,8 +19,8 @@ export default class Login extends Component {
     axios.post(url, data)
     .then(resp => {
       this.setState({ message: 'successfully logged in', error: null})
-      axios.get('http://locahost:5000/auth/me')
-      .then(resp => console.log(resp.data))
+      // axios.get('http://locahost:5000/auth/me')
+      // .then(resp => console.log(resp.data))
     })
     .catch(err => {
       console.log(err.response)

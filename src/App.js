@@ -6,14 +6,14 @@ import Roster from './Roster'
 import RosterAdd from './RosterAdd'
 import { BrowserRouter, Route } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUser, faSignOutAlt, faCalendarAlt, faCalendarTimes,  faClock, faSync, faChevronUp, faUserPlus} from '@fortawesome/free-solid-svg-icons'
+import { faUser, faUserTimes, faSignOutAlt, faCalendarAlt, faCalendarTimes,  faClock, faSync, faChevronUp, faUserPlus, faChevronCircleRight, faChevronCircleLeft} from '@fortawesome/free-solid-svg-icons'
 import RosterAdmin from './RosterAdmin';
 import ReactSelect from './ReactSelect';
 import TimeOff from './TimeOff';
 import MyInfo from './MyInfo';
 import ReportHours from './ReportHours';
 
-library.add(faUser, faSignOutAlt, faCalendarAlt, faCalendarTimes, faClock, faSync, faChevronUp, faUserPlus );
+library.add(faUser, faUserTimes, faSignOutAlt, faCalendarAlt, faCalendarTimes, faClock, faSync, faChevronUp, faUserPlus, faChevronCircleRight, faChevronCircleLeft );
 
 class App extends Component {
   render() {

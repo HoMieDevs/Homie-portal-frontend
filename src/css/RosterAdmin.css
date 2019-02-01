@@ -14,99 +14,183 @@
   font-style: normal;
 }
 
-.selectBox {
-  display: grid;
-  grid-template-columns: 2em auto 2em;
+.storeHeading {
+  padding-top:0.5em;
+  padding-bottom:0.8em;
 }
 
-.rosterSelect {
-  justify-self: center;
+.weekDateContainer {
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  grid-template-columns:  repeat(3,auto);
+  margin-bottom: 0.5em;
+}
+
+.chevronCircleLeft {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  padding-right: .5em;
+}
+.weekDate {
   grid-column-start: 2;
   grid-column-end: 3;
-  width: 200px;
-  font-family: 'Circular';
-  font-size: 18px;
+}
+.chevronCircleRight {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  padding-left: .5em;
 }
 
-.dayContainer {
-  width: 22.75em;
-  height: 4.375em;
+.weekRoster {
   display: grid;
-  grid-template-columns: 3.25em 4.25em 15.75em;
-  grid-auto-rows: auto;
+  justify-content: center;
+}
+
+.staffedDayContainer {
+  border-radius: 10px;
+  display: grid;
+  min-height: 4.375em;
+  width: 23.5em;
+  grid-template-columns: 6.5625em 14.375em 2.5625em ;
+  grid-template-rows: 1fr;
+  margin-bottom: 1em;
 }
 
 .addStaffBtn {
+  z-index: -1;
+  height: 100%;
+  width: 4.625em;
   grid-column-start: 1;
   grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
   justify-self: start;
-  height: 4.375em;
-  display: grid;
-  grid-template-columns: 1fr .7fr;
   background-color: #3CBCD7;
   border-radius: 10px;
-  width: 4.625em;
-  margin-right: -2em;
   border: 1px solid #000;
+  display: grid;
 }
 
 .addUserIcon {
-  grid-column-start: 1;
-  grid-column-end: 2;
   align-self: center;
-  justify-self: center;
-  margin-left: .4em;
+  justify-self: start;
+  margin-left: 0.25em;
 }
 
 .dateContainer {
-  height: 4.375em;
-  grid-column-start: 2;
-  grid-column-end: 3;
-  justify-self: start;
+  height: 100%;
   background-color: #282828;
   width: 4.25em;
   border-radius: 10px 0 0px 10px;
   border: 1px solid #000;
   border-right: none;
-  z-index: 1;
-}
-
-.dateContainer p {
-  line-height: 1em;
-  font-size: 16px;
-  font-family: 'Circular';
-  color: #fff; 
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  justify-self: end;
+  display: grid;
+  grid-column: 2em;
+  grid-auto-rows: auto;
 }
 
 .rostDayName {
-  padding-top: .3em;
-}
-/* .rostDayNum {
-
-} */
-.rostMonth {
-  padding-bottom: .3em;
+  text-align: center;
+  align-self: center;
+  justify-self: center;
+  width: 60px;
+  font-size: 16px;
+  font-family: 'Circular';
+  color: #fff;
 }
 
 .staffContainer {
-  height: 4.375em;
-  grid-column-start: 3;
-  grid-column-end: 4;
-  justify-self: start;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 4.375em;
+  height: 100%;
+  width: 14.375em;
   background-color: #fff;
-  width: 15.75em;
   border-radius: 0 10px 10px 0;
   border: 1px solid #000;
-  z-index: 2;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr ;
+  grid-auto-rows: auto;
+  grid-row-gap: 0.4em;
 }
 
 .staffContainer p {
-  font-family: 'Circular Book';
-  margin-bottom: 0.4em;
+  line-height: 1.5em;
+  font-size: 14px;
+}
+
+.staffContainer :first-child, .staffContainer :nth-child(2) {
+  padding-top: 0.5em
+}
+
+.staffContainer :last-child, .staffContainer :nth-last-child(2) {
+  padding-bottom: 0.5em
+}
+
+.staffContainer :nth-child(odd) {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  align-self: center;
+}
+.staffContainer :nth-child(even) {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  align-self: center;
+}
+
+.removeBtn {
+  z-index: -1;
+  height: 100%;
+  background-color: #FF7474;
+  border: 1px solid #000;
+  border-radius: 0px 10px 10px 0;
+  width: 4.625em;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  justify-self: end;
+  display: grid;
+}
+
+.removeUserIcon {
+  align-self: center;
+  justify-self: end;
+  margin-right: 0.25em;
+}
+
+/* >>>>>>>>>>>>>>>>empty day css>>>>>>>>> */
+
+.emptyDayContainer {
+  width: 23.5em;
+  height: 4.375em;
+  display: grid;
+  grid-template-columns: 6.5625em 16.9375em;
+  grid-template-rows: 1fr;
+  border-radius: 10px;
+  margin-bottom: 1em;
+}
+
+.emptyStaffContainer {
+  height: 100%;
+  width: 16.9375em;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  justify-self: start;
+  border-radius: 0 10px 10px 0;
+  border: 1px solid #000;
+  display: grid;
+}
+
+.emptyStaffContainer p {
+  text-align: center;
+  align-self: center;
+  justify-self: center;
   font-size: 16px;
-  color: #000;
 }

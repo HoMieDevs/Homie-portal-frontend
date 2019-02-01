@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import axios from 'axios';
-import './css/test.css'
+
+import './css/Register.css'
 axios.defaults.withCredentials = true;
 
 export default class RosterAdd extends Component {

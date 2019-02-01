@@ -6,10 +6,12 @@ axios.defaults.withCredentials = true;
 
 export default class Register extends Component {
     state = { }
+    
     handleInputChange = (e) => {
         const { value, id } = e.currentTarget;
         this.setState({ [id]: value})
     }
+
     submitForm = (e) => {
         e.preventDefault()
         // console.log(this.state)
@@ -28,6 +30,7 @@ export default class Register extends Component {
                 }
             })
     }
+
     render() {
         const { error, message } = this.state
         return (

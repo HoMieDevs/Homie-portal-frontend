@@ -7,7 +7,7 @@ axios.defaults.withCredentials = true;
 export default class Roster extends Component {
   state = {
     rosters: [""],
-    staff: [],
+    staff: []
   }
 
   componentDidMount = () => {
@@ -26,24 +26,24 @@ export default class Roster extends Component {
 
   render() {
     const id = this.props.match.params.id
-    console.log(id)
     const oneRoster = this.state.rosters.find(r => r._id === id);
     const allStaff = this.state.staff
+    console.log(this.state.newShift)
 
     return (oneRoster) ? (
       <Fragment>
         <Navigation />
         <div className="Roster">
+
           <div className="thisRoster">
-            <h2>{oneRoster.date}</h2>
             <h3>{oneRoster.location}</h3>
-            <p>
+            <h2>{oneRoster.date}</h2>
+            <div>
               {allStaff.map(s => {
                 return oneRoster.staff.map(p => {
                   return s._id === p.person ?
                     <div>
-                      <p>{s.firstName}</p>
-                      <p>{s.lastName}</p>
+                      <p>{s.firstName} {s.lastName}</p>
                       <p>{p.startTime}</p>
                       <p>{p.endTime}</p>
                       <hr/>
@@ -51,22 +51,7 @@ export default class Roster extends Component {
                   : null
                 })
               })}
-            </p>
-
-            {/* <p>
-                {
-                    oneRoster.staff.map((s, i) => 
-                        <div key={i} className="shift">
-                            {
-                                allStaff.map(p => {                                      
-                                    (p._id === s.person) ? console.log("match") : console.log("no match")
-                                })
-                            }
-                        </div>
-                    )
-                }
-            </p> */}
-              
+            </div> 
           </div>
         </div>
       </Fragment>

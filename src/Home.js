@@ -6,13 +6,54 @@ import './css/Home.css'
 axios.defaults.withCredentials = true;
 
 export default class Home extends Component {
+  state = {
+    rosters: [""],
+    user: []
+  }
+
+  componentDidMount = () => {
+    const rosterUrl = "http://localhost:5000/auth/roster/"
+    axios.get(rosterUrl)
+      .then(resp => {
+        this.setState({ rosters: resp.data })        
+      })
+
+    const myUrl = "http://localhost:5000/auth/me"
+    axios.get(myUrl)
+      .then(resp => {
+        this.setState({ user: resp.data })
+      })
+  }
     
   render() {
+    const allRosters = this.state.rosters
+    const currentUser = this.state.user
+
     return (
       <Fragment>
         <Navigation />
         <div className="home">
-          <h3>Upcoming Shifts</h3>
+
+          {
+            allRosters.map(r => {
+              return r.staff ?
+              <div>
+                {r.staff.map(s =>{
+                  return <div>
+                    {s.staffMember === currentUser._id ? 
+                      <div>
+                        {r.date} {s.startTime} - {s.endTime}
+                      </div> : null
+                    }
+                    </div>
+                })}
+                </div>
+                : null
+            })
+          }
+
+
+          {/* <h3>Upcoming Shifts</h3>
           <div className="homeShiftContainer">
             <div className="homeShift hs1">
               <p className="homeDate">Wed 23rd Jan</p>
@@ -44,9 +85,10 @@ export default class Home extends Component {
               <p className="homeTime">10am - 6pm</p>
               <p className="homeLocation">In Store</p>
             </div>
-          </div>
-          <h3>Hours Worked</h3>
-          <p className="homeBook">8 Hours</p>
+          </div> */}
+
+
+
         </div>
       </Fragment>
     )

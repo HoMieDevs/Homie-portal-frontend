@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Login from './Login'
 import Register from './Register'
+import Unavailability from './Unavailability'
 import Home from './Home'
 import Roster from './Roster'
 import RosterAdd from './RosterAdd'
@@ -24,6 +25,7 @@ class App extends Component {
           <Route exact path="/" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/home" component={Home} />
+          <Route path="/unavailability" component={Unavailability} />
           {/* <Route exact path="/roster" component={RosterAdmin} /> */}
           <Route path="/select" component={ReactSelect} />
           <Route path="/timeoff" component={TimeOff} />

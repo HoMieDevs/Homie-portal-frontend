@@ -19,6 +19,7 @@ export default class Register extends Component {
         const url = "http://localhost:5000/auth/register"
         const data = { firstName, lastName, mobile, email, password }
         axios.post(url, data)
+            .then(console.log(data))
             .then(resp => {
                 console.log(resp)
                 this.setState({ message: `${firstName} has been added`, error: null})

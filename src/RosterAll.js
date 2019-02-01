@@ -51,27 +51,45 @@ export default class Roster extends Component {
         </div>
 
 
+
+        <div className="weekRoster">
         {
             allRosters.map(r => {
-                return <div className="thisRoster">
-                    {/* <h3>{r.location}</h3> */}
-                    <h2>{r.date}</h2>
-                    <div>
-                    {allStaff.map(s => {
+                return  <div className="staffedDayContainer">
+                  <div className="addStaffBtn">
+                    <FontAwesomeIcon 
+                      className="addUserIcon"
+                      icon="user-plus"
+                      color="#fff"
+                      size="lg"
+                    />
+                  </div>
+                  <div className="dateContainer">
+                      <p className="rostDayName">{r.date}</p>
+                    </div>
+                    <div className="staffContainer">                    {allStaff.map(s => {
                         return r.staff.map(p => {
                         return s.staffMember === p.person ?
-                            <div>
+                            <Fragment>
                             <p>{s.firstName} {s.lastName}</p>
                             <p>{p.startTime} - {p.endTime}</p>
-                            <hr/>
-                            </div>
+                            </Fragment>
                         : null
                         })
                     })}
                     </div> 
+                    <div className="removeBtn">
+                    <FontAwesomeIcon 
+                      className="removeUserIcon"
+                      icon="user-times"
+                      color="#fff"
+                      size="lg"
+                    />
+                  </div>
                 </div>
             })
         }
+        </div>
 
       </Fragment>
       ) 

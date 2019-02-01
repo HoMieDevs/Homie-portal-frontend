@@ -1,6 +1,9 @@
 import React, { Component, Fragment } from "react";
 import axios from "axios";
 import "./css/Register.css";
+import Home from "./Home";
+import SubmitUnavailability from "./SubmitUnavailability";
+import CurrentUser from "./CurrentUser";
 axios.defaults.withCredentials = true;
 
 export default class Unavailability extends Component {
@@ -21,10 +24,12 @@ export default class Unavailability extends Component {
   submitForm = e => {
     e.preventDefault();
     console.log(this.state);
-    const { date, allDay, startTime, endTime, comment, approved } = this.state;
-
+    const { date, allDay, startTime, endTime, comment } = this.state;
+    // const userId = localStorage.getItem("userId");
     const url =
-      "http://localhost:5000/auth/unavailability/5c4a9b4dc8989d0ff203c621/";
+      "http://localhost:5000/auth/unavailability/5c490ad5d0df64349e49d792/";
+
+    // const url = `http://localhost:5000/auth/unavailability/${userID}/`;
 
     const unavailability = [
       {
@@ -32,12 +37,12 @@ export default class Unavailability extends Component {
         allDay,
         startTime,
         endTime,
-        comment,
-        approved
+        comment
       }
     ];
 
     const data = { unavailability };
+
     axios
       .put(url, data)
       .then(resp => {
@@ -122,27 +127,15 @@ export default class Unavailability extends Component {
                   onChange={this.handleInputChange}
                 />
               </div>
-
-              <div className="unavailabilityField">
-                <label htmlFor="approved">Approved:</label>
-                <input
-                  type="text"
-                  id="approved"
-                  placeholder="approved"
-                  onFocus={e => (e.target.placeholder = "")}
-                  onBlur={e => (e.target.placeholder = "approved")}
-                  onChange={this.handleInputChange}
-                />
-              </div>
-
               <button className="rosterStaffBtn" onClick={this.submitForm}>
-                + Shift
+                + Submit
               </button>
             </form>
 
             {error && <p>{error}</p>}
             {message && <p>{message}</p>}
           </div>
+          <SubmitUnavailability />
         </div>
       </Fragment>
     );

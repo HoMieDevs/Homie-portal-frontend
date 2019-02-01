@@ -17,10 +17,6 @@ export default class RosterAdd extends Component {
     this.setState({ [id]: value } )
   }
 
-  componentDidMount = () => {
-   
-  }
-
   submitForm = (e) => {
     e.preventDefault()
     console.log(this.state)
@@ -85,6 +81,7 @@ export default class RosterAdd extends Component {
               <div id="staff">
                 <div className="rosterField">
                     <label htmlFor="staffMember">Staff:</label>
+                    {/* get the name, compare it to firstName in user database, send as an id */}
                     <input 
                         type="text" 
                         id="staffMember" 

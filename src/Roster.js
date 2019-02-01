@@ -28,7 +28,6 @@ export default class Roster extends Component {
     const id = this.props.match.params.id
     const oneRoster = this.state.rosters.find(r => r._id === id);
     const allStaff = this.state.staff
-    console.log(this.state.newShift)
 
     return (oneRoster) ? (
       <Fragment>
@@ -41,11 +40,10 @@ export default class Roster extends Component {
             <div>
               {allStaff.map(s => {
                 return oneRoster.staff.map(p => {
-                  return s._id === p.person ?
+                  return s.staffMember === p.person ?
                     <div>
                       <p>{s.firstName} {s.lastName}</p>
-                      <p>{p.startTime}</p>
-                      <p>{p.endTime}</p>
+                      <p>{p.startTime} - {p.endTime}</p>
                       <hr/>
                     </div>
                   : null

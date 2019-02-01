@@ -8,7 +8,7 @@ import RosterAdd from './RosterAdd'
 import { BrowserRouter, Route } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUser, faUserTimes, faSignOutAlt, faCalendarAlt, faCalendarTimes,  faClock, faSync, faChevronUp, faUserPlus, faChevronCircleRight, faChevronCircleLeft} from '@fortawesome/free-solid-svg-icons'
-import RosterAdmin from './RosterAdmin';
+import RosterAll from './RosterAll';
 import ReactSelect from './ReactSelect';
 import TimeOff from './TimeOff';
 import MyInfo from './MyInfo';
@@ -32,7 +32,7 @@ class App extends Component {
           <Route path="/myinfo" component={MyInfo} />
           <Route path="/report" component={ReportHours} />
           <Route path="/roster/:id" component={Roster} />
-          <Route path="/roster" component={RosterAdd} />
+          <Route path="/roster" component={RosterAll} />
           </div>
         </BrowserRouter>
         </div>

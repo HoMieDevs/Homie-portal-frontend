@@ -6,10 +6,12 @@ axios.defaults.withCredentials = true;
 
 export default class Login extends Component {
   state = { }
+  
   handleInputChange = (e) => {
     const { value, id } = e.currentTarget;
     this.setState({ [id]: value})
   }
+
   submitForm = (e) => {
     e.preventDefault()
     // console.log(this.state)

@@ -8,11 +8,18 @@ axios.defaults.withCredentials = true;
 
 
 export default class Navigation extends Component {
+  handleLogout = (e) => {
+    this.logout()
+  }
+
   logout = (e) => {
     const url = "http://localhost:5000/auth/logout"
     axios.get(url)
       .then(resp => {
         console.log(resp)
+        localStorage.removeItem('isAuthenticated')
+        localStorage.removeItem('isAdmin')
+        localStorage.removeItem('userId')
         }
       )
   }
@@ -55,7 +62,7 @@ export default class Navigation extends Component {
         <NavLink
           to="/"
           className="signOut"
-          onClick={this.logout}
+          onClick={this.handleLogout}
           activeStyle={{
           color: "#3CBCD7",
         }}
@@ -75,6 +82,20 @@ export default class Navigation extends Component {
 
 
       <div className="footerContainer">
+        <NavLink
+          to="/home"
+          className="homeNav"
+          activeStyle={{
+          color: "#3CBCD7"
+        }}
+        >
+          <FontAwesomeIcon 
+            className="homeIcon"
+            icon="home"
+            size="lg"
+          />
+          <span className="homeText">Home</span>
+          </NavLink>
         <NavLink
           to="/roster"
           className="calendar"

@@ -12,6 +12,7 @@ import { faUser, faHome, faUserTimes, faSignOutAlt, faCalendarAlt, faCalendarTim
 import RosterAll from './RosterAll';
 import ReactSelect from './ReactSelect';
 import TimeOff from './TimeOff';
+import SelectStaff from './SelectStaff';
 import MyInfo from './MyInfo';
 import ReportHours from './ReportHours';
 import AllStaff from './AllStaff';
@@ -46,8 +47,9 @@ class App extends Component {
           <PrivateRoute path="/myinfo" component={MyInfo} />
           <PrivateRoute path="/report" component={ReportHours} />
           <PrivateRoute path="/roster/:id" component={Roster} />
-          {/* <PrivateRoute path="/roster" component={RosterAdd} /> */}
+          <PrivateRoute exact path="/rosteradd" component={RosterAdd} />
           <PrivateRoute path="/allstaff" component={AllStaff} />
+          <PrivateRoute path="/staffselect" component={SelectStaff} />
           </div>
         </BrowserRouter>
         </div>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { NavLink } from 'react-router-dom'
+import { NavLink, Redirect } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import homieLogo from './images/homieLogo.svg';
 import './css/Navigation.css';
@@ -24,7 +24,9 @@ export default class Navigation extends Component {
       )
   }
   render() {
+    const loggedIn = localStorage.getItem('isAuthenticated')
   return (
+    loggedIn ?
     <React.Fragment>
 
       <header className="headerContainer">
@@ -140,6 +142,6 @@ export default class Navigation extends Component {
         </NavLink>
       </div>
     </React.Fragment>
-  );
+  : <Redirect to="/" />);
 }
 }

@@ -7,50 +7,58 @@ axios.defaults.withCredentials = true;
 
 export default class Home extends Component {
   state = {
-    rosters: [""],
-    user: []
+    rosters: [],
+    // user: []
   }
 
   componentDidMount = () => {
-    const rosterUrl = "http://localhost:5000/auth/roster/"
+    const rosterUrl = "http://localhost:5000/auth/roster"
     axios.get(rosterUrl)
       .then(resp => {
         this.setState({ rosters: resp.data })        
       })
 
-    const myUrl = "http://localhost:5000/auth/me"
-    axios.get(myUrl)
-      .then(resp => {
-        this.setState({ user: resp.data })
-      })
+  //   const myUrl = "http://localhost:5000/auth/me"
+  //   axios.get(myUrl)
+  //     .then(resp => {
+  //       this.setState({ user: resp.data })
+  //     })
   }
     
   render() {
     const allRosters = this.state.rosters
-    const currentUser = this.state.user
-
+    const currentId = localStorage.getItem("userId")
+    
     return (
       <Fragment>
         <Navigation />
+        <h2>Upcoming Shifts</h2>
         <div className="home">
-
-          {
-            allRosters.map(r => {
-              return r.staff ?
-              <div>
-                {r.staff.map(s =>{
-                  return <div>
-                    {s.staffMember === currentUser._id ? 
+        <div className="homeShiftContainer">
+          {allRosters ? allRosters.map(r => {
+            return r.staff ? r.staff.map(s => {
+             return s.staffMember === currentId ?   <div className="homeShift hs1">
+                  <p className="homeDate">{r.date}</p>
+                  <hr className="blueLine"/>
+                  {/* <p>{s.staffMember}</p> */}
+                  <p className="homeTime">{s.startTime}am - {s.endTime}pm</p>
+                  <p className="homeLocation">{r.location}</p>
+                </div>
+                : null
+            })
+            : null
+          }) : <p>No upcoming shifts</p>}
+          {/* { allRosters.map(r => {
+              return r.staff ? r.staff.map(s =>{
+                  return s.staffMember === currentId ? 
                       <div>
                         {r.date} {s.startTime} - {s.endTime}
                       </div> : null
                     }
-                    </div>
-                })}
-                </div>
+                )
                 : null
             })
-          }
+          } */}
 
 
           {/* <h3>Upcoming Shifts</h3>
@@ -89,6 +97,7 @@ export default class Home extends Component {
 
 
 
+        </div>
         </div>
       </Fragment>
     )

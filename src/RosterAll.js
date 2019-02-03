@@ -15,7 +15,7 @@ export default class Roster extends Component {
   }
 
   componentDidMount = () => {
-    const rosterUrl = "http://localhost:5000/auth/roster/"
+    const rosterUrl = "http://localhost:5000/auth/roster"
     axios.get(rosterUrl)
       .then(resp => {
         this.setState({ rosters: resp.data })        
@@ -71,7 +71,8 @@ export default class Roster extends Component {
                   <div className="dateContainer">
                       <p className="rostDayName">{r.date}</p>
                     </div>
-                    <div className="staffContainer">                    {allStaff.map(s => {
+                    <div className="staffContainer">                    
+                      {allStaff.map(s => {
                         return r.staff.map(p => {
                         return s.staffMember === p.person ?
                             <Fragment>

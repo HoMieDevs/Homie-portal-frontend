@@ -5,6 +5,7 @@ import Unavailability from './Unavailability'
 import Home from './Home'
 import Roster from './Roster'
 import RosterAdd from './RosterAdd'
+import RosterAdmin from './RosterAdmin'
 import { BrowserRouter, Route,  Redirect } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUser, faHome, faUserTimes, faSignOutAlt, faCalendarAlt, faCalendarTimes,  faClock, faSync, faChevronUp, faUserPlus, faChevronCircleRight, faChevronCircleLeft} from '@fortawesome/free-solid-svg-icons'
@@ -37,14 +38,15 @@ class App extends Component {
           <Route exact path="/" component={Login} />
           <PrivateRoute path="/register" component={Register} />
           <PrivateRoute path="/home" component={Home} />
-          <PrivateRoute path="/unavailability" component={Unavailability} />
-          {/* <PrivateRoute exact path="/roster" component={RosterAdmin} /> */}
+          <PrivateRoute path="/timeoff" component={Unavailability} />
+          <PrivateRoute exact path="/rosteradmin" component={RosterAdmin} />
+          <PrivateRoute exact path="/roster" component={RosterAll} />
           <PrivateRoute path="/select" component={ReactSelect} />
-          <PrivateRoute path="/timeoff" component={TimeOff} />
+          {/* <PrivateRoute path="/timeoff" component={TimeOff} /> */}
           <PrivateRoute path="/myinfo" component={MyInfo} />
           <PrivateRoute path="/report" component={ReportHours} />
           <PrivateRoute path="/roster/:id" component={Roster} />
-          <PrivateRoute path="/roster" component={RosterAll} />
+          {/* <PrivateRoute path="/roster" component={RosterAdd} /> */}
           <PrivateRoute path="/allstaff" component={AllStaff} />
           </div>
         </BrowserRouter>

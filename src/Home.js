@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import axios from 'axios';
+import Moment from 'react-moment';
+import 'moment-timezone';
 // import Header from './Header';
 import Navigation from './Navigation';
 import './css/Home.css'
@@ -29,6 +31,7 @@ export default class Home extends Component {
     const allRosters = this.state.rosters
     const currentId = localStorage.getItem("userId")
     
+
     return (
       <Fragment>
         <Navigation />
@@ -38,7 +41,7 @@ export default class Home extends Component {
           {allRosters ? allRosters.map(r => {
             return r.staff ? r.staff.map(s => {
              return s.staffMember === currentId ?   <div className="homeShift hs1">
-                  <p className="homeDate">{r.date}</p>
+                  <p className="homeDate"><Moment format="ddd Do MMM" date={r.date} /> </p>
                   <hr className="blueLine"/>
                   {/* <p>{s.staffMember}</p> */}
                   <p className="homeTime">{s.startTime}am - {s.endTime}pm</p>

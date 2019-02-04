@@ -8,11 +8,31 @@ import Moment from 'react-moment';
 import 'moment-timezone';
 axios.defaults.withCredentials = true;
 
-export default class Roster extends Component {
+export default class RosterAllTest extends Component {
   state = {
     rosters: [""],
     staffSchema: []
   }
+
+  submitStaff = this.submitStaff.bind(this);
+
+  submitStaff(event) {
+    this.setState({value: event.target.value});
+  }
+
+  // submitStaff = (e) => {
+  //   e.preventDefault()
+  //   const rosterPostUrl = ""
+  //   axios.post(rosterPostUrl)
+  //   .then(resp => {
+  //     console.log(resp)
+  //     this.setState({ message: 'successfully added staff to roster', error: null})
+  //   })
+  //   .catch(err => {
+  //     console.log(err)
+  //       this.setState({ error: err, message: null})
+  //   })
+  // }
 
   componentDidMount = () => {
     const rosterUrl = "http://localhost:5000/auth/roster"
@@ -28,6 +48,7 @@ export default class Roster extends Component {
       })
   }
 
+
   render() {
     // const id = this.props.match.params.id
     // const oneRoster = this.state.rosters.find(r => r._id === id);
@@ -37,7 +58,6 @@ export default class Roster extends Component {
     return (
      <Fragment>
         <Navigation/>
-        <RosterAdd />
         <h2 className="storeHeading">Store Roster</h2>
         {/* <h3>Office Roster</h3> */}
         <div className="weekDateContainer">

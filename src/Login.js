@@ -23,10 +23,9 @@ export default class Login extends Component {
       localStorage.setItem('isAuthenticated', true);
       localStorage.setItem('userId', resp.data.userId);
       this.setState({ message: 'successfully logged in', error: null})
-      console.log(resp.data.admin)
       resp.data.admin ?
       localStorage.setItem('isAdmin', true)
-      : localStorage.setItem('isAdmin', false);
+      : console.log("Welcome HoMie")
       // axios.get('http://locahost:5000/auth/me')
       // .then(resp => console.log(resp.data))
     })

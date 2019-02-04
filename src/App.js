@@ -11,6 +11,7 @@ import { BrowserRouter, Route,  Redirect } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUser, faHome, faUserTimes, faSignOutAlt, faCalendarAlt, faCalendarTimes,  faClock, faSync, faChevronUp, faUserPlus, faChevronCircleRight, faChevronCircleLeft} from '@fortawesome/free-solid-svg-icons'
 import RosterAll from './RosterAll';
+import RosterAllTest from './RosterAllTest';
 import ReactSelect from './ReactSelect';
 import TimeOff from './TimeOff';
 import SelectStaff from './SelectStaff';
@@ -43,6 +44,7 @@ class App extends Component {
           <PrivateRoute path="/timeoff" component={Unavailability} />
           <PrivateRoute exact path="/rosteradmin" component={RosterAdmin} />
           <PrivateRoute exact path="/roster" component={RosterAll} />
+          <PrivateRoute exact path="/testroster" component={RosterAllTest} />
           <PrivateRoute path="/select" component={ReactSelect} />
           {/* <PrivateRoute path="/timeoff" component={TimeOff} /> */}
           <PrivateRoute path="/myinfo" component={MyInfo} />

@@ -5,15 +5,18 @@ import Home from "./Home";
 import SubmitUnavailability from "./SubmitUnavailability";
 import CurrentUser from "./CurrentUser";
 axios.defaults.withCredentials = true;
+var moment = require("moment");
 
 export default class Unavailability extends Component {
   state = {
-    date: null,
+    startDate: null,
+    endDate: null,
     allDay: null,
     startTime: null,
     endTime: null,
     comment: null,
-    approved: null
+    approved: null,
+    date: null
   };
 
   handleInputChange = e => {
@@ -23,42 +26,66 @@ export default class Unavailability extends Component {
 
   submitForm = e => {
     e.preventDefault();
-    console.log(this.state);
-    const { date, allDay, startTime, endTime, comment } = this.state;
-    const userId = localStorage.getItem("userId");
 
-    // const url =
-    //   "http://localhost:5000/auth/unavailability/5c490ad5d0df64349e49d792/";
+    const fromDate = moment(new Date(this.state.startDate));
+    const toDate = moment(new Date(this.state.endDate));
 
-    const url = `http://localhost:5000/auth/unavailability/${userId}/`;
+    const enumerateDaysBetweenDates = function(startDate, endDate) {
+      const now = startDate;
+      const dates = [];
 
-    const unavailability = [
-      {
-        date,
-        allDay,
-        startTime,
-        endTime,
-        comment
+      while (now.isSameOrBefore(endDate)) {
+        dates.push(now.format("M/D/YYYY"));
+        now.add(1, "days");
       }
-    ];
+      return dates;
+    };
 
-    const data = { unavailability };
+    // console.log(enumerateDaysBetweenDates(fromDate, toDate).length);
 
-    axios
-      .put(url, data)
-      .then(resp => {
-        console.log(resp);
-        this.setState({ message: "unavailability added", error: null });
-      })
-      .catch(err => {
-        console.log(err.response);
-        if (err.response === 403) {
-          this.setState({
-            error: "unavailability was not submitted",
-            message: null
-          });
+    const lenghOfArray = enumerateDaysBetweenDates(fromDate, toDate).length;
+
+    let length = 0;
+    let date = moment(new Date(this.state.startDate));
+
+    while (length < lenghOfArray) {
+      length += 1;
+      const { allDay, startTime, endTime, comment } = this.state;
+      const userId = localStorage.getItem("userId");
+
+      const url = `http://localhost:5000/auth/unavailability/${userId}/`;
+
+      date = moment(new Date(this.state.startDate)).add(1, "days");
+      console.log(typeof date);
+
+      const unavailability = [
+        {
+          date,
+          allDay,
+          startTime,
+          endTime,
+          comment
         }
-      });
+      ];
+
+      const data = { unavailability };
+
+      axios
+        .put(url, data)
+        .then(resp => {
+          console.log(resp);
+          this.setState({ message: "unavailability added", error: null });
+        })
+        .catch(err => {
+          console.log(err.response);
+          if (err.response === 403) {
+            this.setState({
+              error: "unavailability was not submitted",
+              message: null
+            });
+          }
+        });
+    }
   };
 
   render() {
@@ -70,10 +97,22 @@ export default class Unavailability extends Component {
           <div className="addUnavailability">
             <form className="unavailabilityrForm">
               <div className="unavailabilityField">
-                <label htmlFor="date">Date:</label>
+                <label htmlFor="date">Start Date:</label>
                 <input
                   type="date"
-                  id="date"
+                  id="startDate"
+                  placeholder="Date"
+                  onFocus={e => (e.target.placeholder = "")}
+                  onBlur={e => (e.target.placeholder = "Date")}
+                  onChange={this.handleInputChange}
+                />
+              </div>
+
+              <div className="unavailabilityField">
+                <label htmlFor="date">EndDate:</label>
+                <input
+                  type="date"
+                  id="endDate"
                   placeholder="Date"
                   onFocus={e => (e.target.placeholder = "")}
                   onBlur={e => (e.target.placeholder = "Date")}

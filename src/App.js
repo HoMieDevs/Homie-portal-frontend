@@ -4,6 +4,7 @@ import Register from './Register'
 import Unavailability from './Unavailability'
 import Home from './Home'
 import Roster from './Roster'
+import RosterAddStaff from './RosterAddStaff'
 import RosterAdd from './RosterAdd'
 import RosterAdmin from './RosterAdmin'
 import { BrowserRouter, Route,  Redirect } from 'react-router-dom';
@@ -47,6 +48,7 @@ class App extends Component {
           <PrivateRoute path="/myinfo" component={MyInfo} />
           <PrivateRoute path="/report" component={ReportHours} />
           <PrivateRoute path="/roster/:id" component={Roster} />
+          <PrivateRoute path="/rosteraddstaff/:id" component={RosterAddStaff} />
           <PrivateRoute exact path="/rosteradd" component={RosterAdd} />
           <PrivateRoute path="/allstaff" component={AllStaff} />
           <PrivateRoute path="/staffselect" component={SelectStaff} />

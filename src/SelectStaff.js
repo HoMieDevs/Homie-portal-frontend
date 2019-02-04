@@ -28,8 +28,6 @@ export default class SelectStaff extends Component {
     this.setState({value: event.target.value});
   }
 
-
-
   render() {
     console.log(this.state)
     return (

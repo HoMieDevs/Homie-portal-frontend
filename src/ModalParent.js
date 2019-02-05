@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import AddEmployeeModal from './AddEmployeeModal'
 import Moment from 'react-moment';
 import 'moment-timezone';
+import TimePicker from 'react-time-picker';
 
 axios.defaults.withCredentials = true;
 
@@ -39,9 +40,9 @@ export default class ModalParent extends Component {
   openAddEmployeeModal = ( rosterId, rosterLocation, rosterDate, e) => {
     e.preventDefault()
     // set state of selected roster: id, location and date
-    console.log(rosterLocation)
-    console.log(rosterId)
-    console.log(rosterDate)
+    // console.log(rosterLocation)
+    // console.log(rosterId)
+    // console.log(rosterDate)
     this.setState({
       currentRosterId: rosterId,
       currentRosterLocation: rosterLocation,
@@ -53,11 +54,9 @@ export default class ModalParent extends Component {
 
   closeAddEmployeeModal = e => {
     e.preventDefault()
-    this.setState(() => {
-      return {
-        addEmployeeForm: undefined
-      }
-    })
+    this.setState({
+        addEmployeeForm: false
+      })
   }
 
 
@@ -90,16 +89,20 @@ export default class ModalParent extends Component {
   }
 
   addEmployee = (employee) => {
+    console.log("ADD EMPLOYEE IS RUNNING")
+    console.log(employee)
     const url = `http://localhost:5000/auth/roster/${this.state.currentRosterId}`
     axios.put(url, employee)
       .then(resp => {
         // console.log(resp)
         this.setState({ message: 'employee successfully added to shift', error: null})
+        console.log("put request went through")
       })
       .catch(err => {
         // console.log(err.response)
         if (err.response === 403) {
           this.setState({ error: 'employee addition unsuccessful', message: null})
+          console.log("put request failed")
         }
       })
   } 
@@ -110,40 +113,26 @@ export default class ModalParent extends Component {
     this.setState({value: event.target.value});
   }
   
-  onChange = time => this.setState({ start: time })
-  onChange2 = time => this.setState({ end: time })
-
+  startChange = time => this.setState({ start: time })
+  endChange = time => this.setState({ end: time })
 
   handleAdd = (e) => {
     e.preventDefault()
+    console.log("HANDLE ADD IS RUNNING")
     // // Create new object
     const employeeToAdd = { 
-      staffMember: this.selectStaff(e), 
-      startTime: e.target[1].name === 'startTime'
-      ? e.target[1].value
-      : null,
-      endTime: e.target[2].name === 'endTime'
-      ? e.target[2].value
-      : null,
+      staffMember: this.state.value,
+      startTime: this.state.start,
+      endTime: this.state.end
     }
+    console.log(employeeToAdd)
     // Send to server
-    // this.addEmployee(employeeToAdd, rosterId)
     this.addEmployee(employeeToAdd)
     // // Close Modal
     this.setState(() => ({
-      addEmployeeForm: undefined
+      addEmployeeForm: false
     }))
   }
-
-  closeAddEmployeeModal = e => {
-    e.preventDefault()
-    this.setState(() => {
-      return {
-        addEmployeeForm: undefined
-      }
-    })
-  }
-  
 
   toggleStaffDrop = () => {
     this.setState((previousState) => {
@@ -228,6 +217,11 @@ export default class ModalParent extends Component {
             displayStaffAvailable={this.displayStaffAvailable}
             value={this.state.value}
             selectStaff={this.selectStaff}
+            startChange={this.startChange}
+            endChange={this.endChange}
+            start={this.state.start}
+            end={this.state.end}
+            handleAdd={this.handleAdd}
           />
           
           

@@ -37,7 +37,7 @@ export default class Roster extends Component {
     return (
      <Fragment>
         <Navigation/>
-        <RosterAdd />
+        {/* <RosterAdd /> */}
         <h2 className="storeHeading">Store Roster</h2>
         {/* <h3>Office Roster</h3> */}
         <div className="weekDateContainer">

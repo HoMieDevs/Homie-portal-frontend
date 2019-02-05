@@ -58,7 +58,7 @@
 }
 
 .addStaffBtn {
-  z-index: -1;
+  /* z-index: -1; */
   height: 100%;
   width: 4.625em;
   grid-column-start: 1;
@@ -70,6 +70,7 @@
   border-radius: 10px;
   border: 1px solid #000;
   display: grid;
+  cursor: pointer;
 }
 
 .addUserIcon {

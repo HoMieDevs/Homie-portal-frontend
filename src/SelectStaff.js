@@ -12,7 +12,7 @@ export default class SelectStaff extends Component {
   state = {
       value: "Please Select A Staff Member",
       start: "10:00",
-      end: "10:00",
+      end: "18:00",
       // time: '10:00',
   }
 
@@ -52,16 +52,21 @@ export default class SelectStaff extends Component {
             <select value={this.state.value} onChange={this.selectStaff}>
               <option value=''>Select A Staff Member</option>
             {this.state.staffSelect ? 
-            this.state.staffSelect.allStaff.map(s => s ? 
-              <Fragment>
-               {s.unavail ? 
-                s.unavail.map(u =>
-                u.allDay ? <option value={s.id} disabled>{s.firstName} {s.lastName} | Unavailable: All Day </option>  : <option value={s.id}>{s.firstName} {s.lastName} | Unavailable: {u.startTime} - {u.endTime} </option>)
-              : <option value={s.id}>{s.firstName} {s.lastName}</option> 
-              }
-              </Fragment>
-              : null) 
-            : null} 
+              this.state.staffSelect.allStaff.map(s => 
+                s ? 
+                  s.unavail.length > 0 ? 
+                    s.unavail.map(u =>
+                      u.allDay ? 
+                        <option value={s.id} disabled>{s.firstName} {s.lastName} | Unavailable: All Day </option>  
+                      : 
+                        <option value={s.id}>{s.firstName} {s.lastName} | Unavailable: {u.startTime} - {u.endTime} </option>
+                    )
+                  : 
+                    <option value={s.id}>{s.firstName} {s.lastName}</option>
+                :
+                  null
+              )
+            : null } 
             </select>
           </label>
           <br/>
@@ -134,3 +139,4 @@ export default class SelectStaff extends Component {
 // logic so end time doesnt clash with unavailabilities
 // get on submit to grab all values and submit an axios.post request with all above logic inside to stop the submit if any errors occur
 // if staff member already has a shift on that day then they can’t be added again (either errors out or they’re disabled/hidden from selection
+// backend set location as either store or office (roster)

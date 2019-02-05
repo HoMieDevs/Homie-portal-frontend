@@ -7,6 +7,7 @@ import Roster from './Roster'
 import RosterAddStaff from './RosterAddStaff'
 import RosterAdd from './RosterAdd'
 import RosterAdmin from './RosterAdmin'
+import ModalParent from './ModalParent'
 import { BrowserRouter, Route,  Redirect } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUser, faHome, faUserTimes, faSignOutAlt, faCalendarAlt, faCalendarTimes,  faClock, faSync, faChevronUp, faUserPlus, faChevronCircleRight, faChevronCircleLeft} from '@fortawesome/free-solid-svg-icons'
@@ -43,7 +44,7 @@ class App extends Component {
           <PrivateRoute path="/home" component={Home} />
           <PrivateRoute path="/timeoff" component={Unavailability} />
           <PrivateRoute exact path="/rosteradmin" component={RosterAdmin} />
-          <PrivateRoute exact path="/roster" component={RosterAll} />
+          {/* <PrivateRoute exact path="/roster" component={RosterAll} /> */}
           <PrivateRoute exact path="/testroster" component={RosterAllTest} />
           <PrivateRoute path="/select" component={ReactSelect} />
           {/* <PrivateRoute path="/timeoff" component={TimeOff} /> */}
@@ -54,6 +55,7 @@ class App extends Component {
           <PrivateRoute exact path="/rosteradd" component={RosterAdd} />
           <PrivateRoute path="/allstaff" component={AllStaff} />
           <PrivateRoute path="/staffselect" component={SelectStaff} />
+          <PrivateRoute exact path="/modal" component={ModalParent} />
           </div>
         </BrowserRouter>
         </div>

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import axios from 'axios';
 import Navigation from './Navigation';
-import RosterAdd from './RosterAdd'
+// import RosterAdd from './RosterAdd'
 import './css/RosterAdmin.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Moment from 'react-moment';
@@ -37,7 +37,6 @@ export default class Roster extends Component {
     return (
      <Fragment>
         <Navigation/>
-        <RosterAdd />
         <h2 className="storeHeading">Store Roster</h2>
         {/* <h3>Office Roster</h3> */}
         <div className="weekDateContainer">

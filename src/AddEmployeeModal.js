@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { render } from "react-dom";
 import Modal from "react-responsive-modal";
+import './css/AddStaffModal.css'
 import AllStaff from './AllStaff';
 import Moment from 'react-moment';
 import 'moment-timezone';
@@ -13,12 +14,12 @@ class AddEmployeeModal extends Component {
     return(
 
 
-        <Modal open={this.props.open} onClose={this.props.onClose} center>
+        <Modal open={this.props.open} onClose={this.props.onClose}>
           <form action=""></form>
         <label>
             Staff Member:
           <br/>
-            <select value={this.props.value} onChange={this.props.selectStaff}>
+            <select value={this.props.value} onChange={this.props.selectStaff} >
               <option value=''>Select A Staff Member</option>
             {this.props.availableStaff ? 
               this.props.availableStaff.allStaff ?

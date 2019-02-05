@@ -5,7 +5,8 @@ axios.defaults.withCredentials = true;
 
 class SubmitUnavailability extends Component {
   state = {
-    UserUnavailability: []
+    UserUnavailability: [],
+    User: null
   };
 
   componentDidMount() {
@@ -22,6 +23,13 @@ class SubmitUnavailability extends Component {
       .then(resp => this.setState(resp.data));
   }
 
+  deleteTimeOff = (unid) => {
+    const userId = localStorage.getItem("userId");
+    axios.delete(`http://localhost:5000/auth/unavailability/${userId}/${unid}`)
+    .then(console.log('Deleted'))
+    .catch(err => console.log(err))
+  }
+
   render() {
     return (
       <div className="main">
@@ -30,6 +38,7 @@ class SubmitUnavailability extends Component {
             <div>
               <li>{unavailability.date}</li>
               <li>{unavailability.comment}</li>
+              <input onClick={() => this.deleteTimeOff(unavailability._id)} className="delete-button" type="delete" value="Delete" />
             </div>
           );
         })}

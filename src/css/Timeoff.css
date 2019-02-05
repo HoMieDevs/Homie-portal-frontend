@@ -140,7 +140,7 @@
   /* border-radius: 10px; */
   background-color: rgb(240, 253, 255);
 }
-.submit-button {
+.submit-button, .delete-button {
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 5;

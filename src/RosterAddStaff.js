@@ -88,19 +88,25 @@ export default class RosterAdd extends Component {
   render() {
     const { error, message } = this.state
     console.log(this.state.allStaff)
-    // const unavail = this.state.allStaff.map(s => {
-    //   s.unavailability.map(u => {
-    //     if(u.date === this.state.theDate) {
-    //       if(u.allDay) {
-    //         return "All Day"
-    //       } else {
-    //         return u
-    //       }
+
+    // let staffList = null;
+    // if(this.state.allStaff) {
+    //   staffList = this.state.allStaff.map(st => {
+    //     if(st.unavailability.length > 0) {
+    //       st.unavailability.map(u => {
+    //         if(u.date === this.state.theDate) {
+    //           if(u.allDay) {
+    //             return `${st.firstName} ${st.lastName} | Unavailable: All Day`
+    //           } else {
+    //             return `${st.firstName} ${st.lastName} | Unavailable: ${u.startTime} - ${u.endTime}`
+    //           }
+    //         }
+    //       })
     //     } else {
-    //       return "Available"
+    //       return `${st.firstName} ${st.lastName}`
     //     }
     //   })
-    // })
+    // }
 
     return (
       <Fragment>
@@ -127,8 +133,32 @@ export default class RosterAdd extends Component {
                       this.state.allStaff.map(s => s ? 
                         <Fragment>
                           {
-                            <option value={s._id}>{s.firstName} {s.lastName}</option> 
+                            <option value={s._id}>{s.firstName} {s.lastName} {
+                                    s.unavailability.map(u =>
+                                      u.date === this.state.theDate ?
+                                      u.allDay ? `| Unavailable: All Day` : 
+                                      `| Unavailable: ${u.startTime} - ${u.endTime}`
+                                    : null)
+                            }</option>
                           }
+                          {/* {
+                              
+                                s.unavailability.map(u =>
+                                  u.date === this.state.theDate ?
+                                  u.allDay ? <option value={s._id}>{s.firstName} {s.lastName} | Unavailable: All Day</option> : 
+                                  <option value={s._id}>{s.firstName} {s.lastName} | Unavailable: {u.startTime} - {u.endTime}</option>
+                                : <option value={s._id}>{s.firstName} {s.lastName}</option>)
+                             
+                          } */}
+                          {/* {
+                            <option value={s._id}>{s.firstName} {s.lastName} {
+                              s.unavailability.length > 0 ?
+                                s.unavailability.map(u =>
+                                  u.allDay ? <span>| Unavailable: All Day</span> : 
+                                  <span>| Unavailable: {u.startTime} - {u.endTime}</span> )
+                              : <span>Available</span>
+                            } </option> 
+                          } */}
                         </Fragment>
                         : null) 
                       : null} 

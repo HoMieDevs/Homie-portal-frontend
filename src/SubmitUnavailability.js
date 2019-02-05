@@ -1,3 +1,4 @@
+
 import React, { Component, Fragment } from "react";
 import axios from "axios";
 import "./css/Register.css";
@@ -30,12 +31,10 @@ class SubmitUnavailability extends Component {
     axios
       .get(`http://localhost:5000/auth/unavailibility/${userId}`)
       .then(resp => {
-        // console.log(resp.data.UserUnavailability);
         const sorted = resp.data.UserUnavailability.sort((a, b) => {
           return a.date > b.date ? -1 : a.date < b.date ? 1 : 0;
           // return new Date(a.date) > new Date(b.date);
         });
-        // console.log(sorted);
         this.setState({ UserUnavailability: sorted });
       });
   }
@@ -55,7 +54,6 @@ class SubmitUnavailability extends Component {
             <div>
               <li>{unavailability.date}</li>
               <li>{unavailability.comment}</li>
-              <input onClick={() => this.deleteTimeOff(unavailability._id)} className="delete-button" type="delete" value="Delete" />
             </div>
           );
         })}

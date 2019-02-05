@@ -31,15 +31,21 @@ export default class Unavailability extends Component {
     const fromDate = moment(new Date(this.state.startDate));
     const toDate = moment(new Date(this.state.endDate));
 
-    const enumerateDaysBetweenDates = function(startDate, endDate) {
-      const now = startDate;
+    const enumerateDaysBetweenDates = function(fromDate, toDate) {
+      const now = moment(new Date(fromDate));
       const dates = [];
 
-      while (now.isSameOrBefore(endDate)) {
-        dates.push(now.format("M/D/YYYY"));
+      while (now.isSameOrBefore(toDate)) {
+        dates.push(now.format("YYYY/MM/DD"));
         now.add(1, "days");
       }
-      return dates;
+      return dates.sort(function(a, b) {
+        // convert date object into number to resolve issue in typescript
+        // return +new Date(a.date) - +new Date(b.date);
+        // console.log(dates);
+        return a - b;
+      });
+      // return dates;
     };
 
     // console.log(enumerateDaysBetweenDates(fromDate, toDate).length);
@@ -48,16 +54,17 @@ export default class Unavailability extends Component {
 
     let length = 0;
     let date = moment(new Date(this.state.startDate));
-
+    let numOfDays = 0;
+    const promises = [];
     while (length < lenghOfArray) {
-      length += 1;
       const { allDay, startTime, endTime, comment } = this.state;
       const userId = localStorage.getItem("userId");
 
       const url = `http://localhost:5000/auth/unavailability/${userId}/`;
 
-      date = moment(new Date(this.state.startDate)).add(1, "days");
-      console.log(typeof date);
+      date = moment(new Date(this.state.startDate))
+        .add(numOfDays, "days")
+        .format("YYYY-MM-DD");
 
       const unavailability = [
         {
@@ -69,24 +76,32 @@ export default class Unavailability extends Component {
         }
       ];
 
+      console.log(date);
       const data = { unavailability };
+      console.log(data);
 
-      axios
-        .put(url, data)
-        .then(resp => {
-          console.log(resp);
-          this.setState({ message: "unavailability added", error: null });
-        })
-        .catch(err => {
-          console.log(err.response);
-          if (err.response === 403) {
-            this.setState({
-              error: "unavailability was not submitted",
-              message: null
-            });
-          }
-        });
+      promises.push(axios.put(url, data));
+      length++;
+      numOfDays += 1;
     }
+    Promise.all(promises)
+      .then(responses => {
+        // console.log(responses);
+        this.setState({ message: "successfully added", error: null });
+      })
+      // .then(resp => {
+      //   console.log(resp);
+      //   this.setState({ message: "unavailability added", error: null });
+      // })
+      .catch(err => {
+        console.log(err.response);
+        if (err.response === 403) {
+          this.setState({
+            error: "unavailability was not submitted",
+            message: null
+          });
+        }
+      });
   };
 
   render() {

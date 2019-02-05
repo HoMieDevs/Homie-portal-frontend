@@ -29,7 +29,7 @@ class SubmitUnavailability extends Component {
     .then(console.log('Deleted'))
     .catch(err => console.log(err))
   }
-
+  
   render() {
     return (
       <div className="main">

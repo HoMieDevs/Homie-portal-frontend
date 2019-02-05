@@ -6,6 +6,7 @@ import Home from './Home'
 import Roster from './Roster'
 import RosterAddStaff from './RosterAddStaff'
 import RosterAdd from './RosterAdd'
+import AddEmployeeModal from './AddEmployeeModal'
 import RosterAdmin from './RosterAdmin'
 import ModalParent from './ModalParent'
 import { BrowserRouter, Route,  Redirect } from 'react-router-dom';
@@ -42,6 +43,7 @@ class App extends Component {
           <Route exact path="/" component={Login} />
           <PrivateRoute path="/register" component={Register} />
           <PrivateRoute path="/home" component={Home} />
+          <PrivateRoute exact path="/AddEmployeeModal" component={AddEmployeeModal} />
           <PrivateRoute path="/timeoff" component={Unavailability} />
           <PrivateRoute exact path="/rosteradmin" component={RosterAdmin} />
           {/* <PrivateRoute exact path="/roster" component={RosterAll} /> */}

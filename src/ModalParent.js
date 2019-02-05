@@ -1,38 +1,45 @@
 import React, { Component, Fragment } from 'react'
 import axios from 'axios';
+import { render } from "react-dom";
+import Modal from "react-responsive-modal";
 import Navigation from './Navigation';
-import RosterAdd from './RosterAdd'
+import TestModal from './TestModal'
 import './css/RosterAdmin.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import AddEmployeeModal from './AddEmployeeModal'
 import Moment from 'react-moment';
 import 'moment-timezone';
+
 axios.defaults.withCredentials = true;
+
+
 
 export default class ModalParent extends Component {
   state = {
-    // rosters: [""],
-    // staffList: [""],
+    open: false,
+
+    rosters: undefined,
+    staffList: undefined,
     displayStaffAvailable:  false,
+    availableStaff: undefined,
     addEmployeeForm: undefined,
     currentRosterId: undefined,
     currentRosterLocation: undefined,
     currentRosterDate: undefined,
   }
 
-  // >>>>>>>>>>>>>>>>> NEW LOGIC
+  // openAddEmployeeModal = () => {
+  //   this.setState({ addEmployeeForm: true })
+  // }
 
-  openAddEmployeeModal = () => {
-    this.setState({ addEmployeeForm: true })
-  }
-
-  closeAddEmployeeModal = e => {
-    e.preventDefault()
-    this.setState(() => {
-      return {
-        addEmployeeForm: undefined
-      }
-    })
-  }
+  // closeAddEmployeeModal = e => {
+  //   e.preventDefault()
+  //   this.setState(() => {
+  //     return {
+  //       addEmployeeForm: undefined
+  //     }
+  //   })
+  // }
 
   componentDidMount = () => {
     this.getAllRosters()
@@ -54,15 +61,13 @@ export default class ModalParent extends Component {
       })
   }
 
-  getRosterInfo = () => {
-    // pull the date from button (set date={r.date} id={r.id} location={r.location})
-    const rosterDate = "2019-12-12T00:00:00.000Z"
-    const location = "store"
-    const rosterDayUrl = `http://localhost:5000/auth/staff/${location}/${rosterDate}`
+  getRostersAvailableStaff = (rosterLocation, rosterDate,) => {
+    const rosterDayUrl = `http://localhost:5000/auth/staff/${rosterLocation}/${rosterDate}`
     axios.get(rosterDayUrl)
       .then(resp => {
         this.setState({ availableStaff: resp.data }) 
-        // console.log(this.state)       
+        // console.log(rosterLocation)
+        // console.log(this.state.availableStaff) 
       })
   }
 
@@ -80,26 +85,19 @@ export default class ModalParent extends Component {
         }
       })
   } 
-  
-
-  // setRosterIdLocationDate(rosterId, rosterLocation, rosterDate) {
-  //   this.setState({
-  //     currentRosterId: rosterId,
-  //     currentRosterLocation: rosterLocation,
-  //     currentRosterDate: rosterDate
-  //   })
-  //   }
-
 
   handleAdd = (rosterId, rosterLocation, rosterDate, e) => {
     e.preventDefault()
+    this.onOpenModal()
+    // set state of selected roster: id, location and date
     this.setState({
       currentRosterId: rosterId,
       currentRosterLocation: rosterLocation,
       currentRosterDate: rosterDate
     })
-    // // const rosterId = getRosterId()
-    // // const rosterId = getRosterDate()
+
+    this.getRostersAvailableStaff(rosterLocation, rosterDate)
+
     // // Create new object
     // const employeeToAdd = { 
     //   staffMember: this.selectStaff(e), 
@@ -114,9 +112,22 @@ export default class ModalParent extends Component {
     // // this.addEmployee(employeeToAdd, rosterId)
     // this.addEmployee(employeeToAdd)
     // // Close Modal
-    // this.setState(() => ({
-    //   addEmployeeForm: undefined
-    // }))
+    this.setState(() => ({
+      addEmployeeForm: undefined
+    }))
+  }
+
+  openAddEmployeeModal = () => {
+    this.setState({ addEmployeeForm: true })
+  }
+
+  closeAddEmployeeModal = e => {
+    e.preventDefault()
+    this.setState(() => {
+      return {
+        addEmployeeForm: undefined
+      }
+    })
   }
   
 
@@ -128,16 +139,33 @@ export default class ModalParent extends Component {
     })
   }
 
+
+  onOpenModal = () => {
+    this.setState({ open: true });
+  };
+
+  onCloseModal = () => {
+    this.setState({ open: false });
+  };
+
   render() {
     const staffList = this.state.staffList
     const rosters = this.state.rosters
-    console.log(this.state.currentRosterDate)
-    console.log(this.state.currentRosterLocation)
-    console.log(this.state.currentRosterId)
-
+    // console.log(this.state.currentRosterDate)
+    // console.log(this.state.currentRosterLocation)
+    // console.log(this.state.currentRosterId)
+    console.log(this.state)
+    const {open} = this.state
     return (
      <Fragment>
         <Navigation/>
+
+        <div >
+          <h2>react-responsive-modal</h2>
+          <button onClick={this.onOpenModal}>Open modal</button>
+        </div>
+
+        {/* <AddEmployeeModal /> */}
         {/* <RosterAdd /> */}
         <h2 className="storeHeading">Store Roster</h2>
         {/* <h3>Office Roster</h3> */}
@@ -159,8 +187,8 @@ export default class ModalParent extends Component {
 
         <div className="weekRoster">
         {rosters ? 
-          rosters.map(roster => {
-           return <div className="staffedDayContainer">
+          rosters.map((roster, index) => {
+           return <div key={index} className="staffedDayContainer">
               <div className="addStaffBtn"
                 type="button"
                 htmlFor="staffAddButton"
@@ -173,6 +201,22 @@ export default class ModalParent extends Component {
                   size="lg"
                 />
               </div>
+          
+          
+          
+          <AddEmployeeModal 
+            open={this.state.open} 
+            onClose={this.onCloseModal} 
+            addEmployee={this.addEmployee}
+            availableStaff={this.state.availableStaff}
+            displayStaffAvailable={this.displayStaffAvailable}
+          />
+          
+          
+          
+          
+          
+          
               <div className="dateContainer">
                 <p className="rostDayName">{roster.date}</p>
               </div>
@@ -180,10 +224,10 @@ export default class ModalParent extends Component {
               {staffList ? 
                 staffList.map(oneStaff =>
                   roster.staff.length > 0 ? 
-                    roster.staff.map(employee => {
+                    roster.staff.map((employee, index) => {
                       return employee && oneStaff ?
                         employee.staffMember === oneStaff._id  ? 
-                          <Fragment>
+                          <Fragment key={index}>
                             <p>{oneStaff.firstName} {oneStaff.lastName}</p>
                             <p>{employee.startTime}-{employee.endTime}</p>
                           </Fragment>
@@ -196,7 +240,7 @@ export default class ModalParent extends Component {
                 )
               :
               null
-              }
+              }        
               </div>
             </div>
           })

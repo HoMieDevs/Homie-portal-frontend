@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import axios from "axios";
 import "./css/Register.css";
 import Home from "./Home";
+import Navigation from "./Navigation";
 import SubmitUnavailability from "./SubmitUnavailability";
 import CurrentUser from "./CurrentUser";
 axios.defaults.withCredentials = true;
@@ -108,6 +109,7 @@ export default class Unavailability extends Component {
 
     return (
       <Fragment>
+        <Navigation />
         <div className="Unavailability">
           <div className="addUnavailability">
             <form className="unavailabilityrForm">

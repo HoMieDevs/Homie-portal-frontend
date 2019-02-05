@@ -31,14 +31,19 @@ class SubmitUnavailability extends Component {
     axios
       .get(`http://localhost:5000/auth/unavailibility/${userId}`)
       .then(resp => {
-        console.log(resp.data.UserUnavailability);
         const sorted = resp.data.UserUnavailability.sort((a, b) => {
           return a.date > b.date ? -1 : a.date < b.date ? 1 : 0;
           // return new Date(a.date) > new Date(b.date);
         });
-        console.log(sorted);
         this.setState({ UserUnavailability: sorted });
       });
+  }
+
+  deleteTimeOff = (unid) => {
+    const userId = localStorage.getItem("userId");
+    axios.delete(`http://localhost:5000/auth/unavailability/${userId}/${unid}`)
+    .then(console.log('Deleted'))
+    .catch(err => console.log(err))
   }
 
   render() {

@@ -116,7 +116,7 @@
   font-size: 24px;
   color: #000;
 }
-.repeat-option select, .date, .time, .comment textarea {
+.repeat-option select, .date, .time, .comment textarea, .allDay {
   justify-self: center;
   align-self: center;
   font-size: 16px;

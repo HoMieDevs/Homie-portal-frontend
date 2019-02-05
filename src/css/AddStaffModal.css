@@ -15,10 +15,26 @@
 }
 
 .styles_overlay__CLSq- {
+  background: rgba(0, 0, 0, 0.15);
 }
 
 .styles_modal__gNwvD {
   font-family: "Circular";
   height: 19.75em;
-  
+  width: 90vw;
+  max-width: 22em;
+  border-radius: 10px;
+}
+
+.add-staff-btn {
+  font-family: 'Circular Book';
+  font-size: 16px;
+  background-color: #282828;
+  color: #3CBCD7;
+  width: 125px;
+  height: 36px;
+  border: 3px solid #3CBCD7;
+  border-radius: 10px;
+  justify-self: center;
+  align-self: end;
 }

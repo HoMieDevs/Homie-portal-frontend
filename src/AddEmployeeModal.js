@@ -14,8 +14,9 @@ class AddEmployeeModal extends Component {
     return(
 
 
-        <Modal open={this.props.open} onClose={this.props.onClose}>
+        <Modal open={this.props.open} onClose={this.props.onClose} center>
           <form action=""></form>
+          <h2>Add Staff</h2>
         <label>
             Staff Member:
           <br/>
@@ -81,7 +82,7 @@ class AddEmployeeModal extends Component {
           onChange={this.props.endChange}
           value={this.props.emd}
         />
-        <button className="rosterStaffBtn" onClick={this.props.handleAdd}>+ Shift</button>
+        <button className="add-staff-btn" onClick={this.props.handleAdd}>+ Shift</button>
               
         </Modal>
 

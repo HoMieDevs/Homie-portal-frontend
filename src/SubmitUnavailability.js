@@ -1,42 +1,26 @@
-
 import React, { Component, Fragment } from "react";
 import axios from "axios";
 import "./css/Register.css";
 axios.defaults.withCredentials = true;
 
-var moment = require("moment");
-
 class SubmitUnavailability extends Component {
   state = {
-    UserUnavailability: []
+    UserUnavailability: [],
+    User: null
   };
 
   componentDidMount() {
     const userId = localStorage.getItem("userId");
     axios
       .get(`http://localhost:5000/auth/unavailibility/${userId}`)
-      .then(resp => {
-        console.log(resp.data.UserUnavailability);
-        const sorted = resp.data.UserUnavailability.sort((a, b) => {
-          return a.date > b.date ? -1 : a.date < b.date ? 1 : 0;
-          // return new Date(a.date) > new Date(b.date);
-        });
-        console.log(sorted);
-        this.setState({ UserUnavailability: sorted });
-      });
+      .then(resp => this.setState(resp.data));
   }
 
   componentDidUpdate() {
     const userId = localStorage.getItem("userId");
     axios
       .get(`http://localhost:5000/auth/unavailibility/${userId}`)
-      .then(resp => {
-        const sorted = resp.data.UserUnavailability.sort((a, b) => {
-          return a.date > b.date ? -1 : a.date < b.date ? 1 : 0;
-          // return new Date(a.date) > new Date(b.date);
-        });
-        this.setState({ UserUnavailability: sorted });
-      });
+      .then(resp => this.setState(resp.data));
   }
 
   deleteTimeOff = (unid) => {
@@ -45,7 +29,7 @@ class SubmitUnavailability extends Component {
     .then(console.log('Deleted'))
     .catch(err => console.log(err))
   }
-
+  
   render() {
     return (
       <div className="main">
@@ -54,6 +38,7 @@ class SubmitUnavailability extends Component {
             <div>
               <li>{unavailability.date}</li>
               <li>{unavailability.comment}</li>
+              <input onClick={() => this.deleteTimeOff(unavailability._id)} className="delete-button" type="delete" value="Delete" />
             </div>
           );
         })}

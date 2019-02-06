@@ -22,6 +22,7 @@ export default class Approvals extends Component {
 
   changeApproved = (id, unid) => {
     const unUrl = `http://localhost:5000/auth/unavailabilityapprove/${id}/${unid}`
+    // const unUrl = `${process.env.REACT_APP_API_URL}/${id}/${unid}`
 
     const data = true
     axios.put(unUrl, data)
@@ -37,6 +38,7 @@ export default class Approvals extends Component {
 
   rejectUn = (id, unid) => {
     const unUrl = `http://localhost:5000/auth/unavailability/${id}/${unid}`
+    // const unUrl = `${process.env.REACT_APP_API_URL}/${id}/${unid}`
 
     const data = true
     axios.delete(unUrl, data)

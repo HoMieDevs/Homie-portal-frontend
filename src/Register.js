@@ -16,8 +16,8 @@ export default class Register extends Component {
     e.preventDefault();
     // console.log(this.state)
     const { firstName, lastName, mobile, email, password } = this.state;
-    // const url = "http://localhost:5000/auth/register";
-    const url = `${process.env.REACT_APP_API_URL}/auth/register`;
+    const url = `${process.env.REACT_APP_DEV_API_URL}/auth/register`;
+    // const url = `${process.env.REACT_APP_API_URL}/auth/register`;
     const data = { firstName, lastName, mobile, email, password };
     axios
       .post(url, data)

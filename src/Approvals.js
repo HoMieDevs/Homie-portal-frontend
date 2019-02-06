@@ -21,11 +21,25 @@ export default class Approvals extends Component {
   }
 
   changeApproved = (id, unid) => {
-
     const unUrl = `http://localhost:5000/auth/unavailabilityapprove/${id}/${unid}`
 
     const data = true
     axios.put(unUrl, data)
+      .then(resp => {
+        this.setState({ message: 'unavailability approved', error: null})
+      })
+      .catch(err => {
+        if (err.response === 403) {
+          this.setState({ error: 'unavailability was not approved', message: null})
+        }
+      })
+  }
+
+  rejectUn = (id, unid) => {
+    const unUrl = `http://localhost:5000/auth/unavailability/${id}/${unid}`
+
+    const data = true
+    axios.delete(unUrl, data)
       .then(resp => {
         this.setState({ message: 'unavailability approved', error: null})
       })
@@ -55,10 +69,11 @@ export default class Approvals extends Component {
                             return u.approved ? null :
                             <div key={u._id}>
                                 <p>{s.firstName} {s.lastName}</p>
-                                <p>{u.date}</p>
+                                <p><Moment format="ddd Do MMM" date={u.date} /></p>
                                 <p>{u.startTime}-{u.endTime}</p>
                                 <p>{u.comment}</p>
                                 <button onClick={() => this.changeApproved(s._id, u._id)}>Approve</button>
+                                <button onClick={() => this.rejectUn(s._id, u._id)}>Reject</button>
                             </div>
                         }) : null
                 })
@@ -77,7 +92,7 @@ export default class Approvals extends Component {
                             return u.approved ?
                             <div key={u._id}>
                                 <p>{s.firstName} {s.lastName}</p>
-                                <p>{u.date}</p>
+                                <p><Moment format="ddd Do MMM" date={u.date} /></p>
                                 <p>{u.startTime}-{u.endTime}</p>
                                 <p>{u.comment}</p>
                             </div>

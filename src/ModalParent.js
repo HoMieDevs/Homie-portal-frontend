@@ -54,17 +54,6 @@ export default class ModalParent extends Component {
     })
     this.getRostersAvailableStaff(rosterLocation, rosterDate)
   }
-  openDeleteEmployeeModal = ( rosterId, rosterLocation, rosterDate, e) => {
-    e.preventDefault()
-    // set state of selected roster: id, location and date
-    this.setState({
-      currentRosterId: rosterId,
-      currentRosterLocation: rosterLocation,
-      currentRosterDate: rosterDate,
-      addDeleteForm: true
-    })
-    this.getRostersDeleteStaff(rosterLocation, rosterDate)
-  }
 
   openDeleteEmployeeModal = ( rosterId, rosterLocation, rosterDate, e ) => {
     e.preventDefault()
@@ -73,9 +62,9 @@ export default class ModalParent extends Component {
       currentRosterId: rosterId,
       currentRosterLocation: rosterLocation,
       currentRosterDate: rosterDate,
-      addDeleteForm: true
+      deleteEmployeeForm: true
     })
-    this.getStaffToDelete(rosterLocation, rosterDate)
+    this.getRostersDeleteStaff(rosterLocation, rosterDate)
   }
 
   closeAddEmployeeModal = e => {
@@ -89,6 +78,18 @@ export default class ModalParent extends Component {
       addSelect: undefined,
       startTime: undefined,
       endTime: undefined,
+      dropAddClass: "dropdown"
+      })
+  }
+  closeDeleteEmployeeModal = e => {
+    e.preventDefault()
+    this.setState({
+      deleteEmployeeForm: false,
+      currentRosterId: undefined,
+      currentRosterLocation: undefined,
+      currentRosterDate: undefined,
+      addPlaceholder: "Select Staff Member",
+      addSelect: undefined,
       dropAddClass: "dropdown"
       })
   }
@@ -333,7 +334,7 @@ export default class ModalParent extends Component {
         deleteEmployee={this.deleteEmployee}
         availableStaff={this.state.availableStaff}
         displayStaffAvailable={this.displayStaffAvailable}
-        selectStaff={this.selectStaff}
+        Staff={this.deleteStaff}
         handleDelete={this.handleDelete}
         deletePlaceholder={this.state.deletePlaceholder}
 

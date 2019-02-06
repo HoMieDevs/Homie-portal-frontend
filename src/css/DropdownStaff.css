@@ -56,9 +56,14 @@ li:last-child {
   border-radius: 0px 0px 10px 10px;
   border-color: none;
 }
-li:hover {
-  background-color: #e5e5e5;
+.available:hover {
+  background-color:rgba(102, 255, 0, 0.168);
 }
+
+.unavailable{
+  background-color: rgba(249, 153, 153, 0.297);
+}
+
 .button{
   width:178px;
   height:18px;

@@ -7,6 +7,7 @@ import TestModal from './TestModal'
 import './css/RosterAdmin.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import AddEmployeeModal from './AddEmployeeModal'
+import DeleteEmployeeModal from './DeleteEmployeeModal'
 import Moment from 'react-moment';
 import 'moment-timezone';
 import TimePicker from 'react-time-picker';
@@ -18,7 +19,8 @@ axios.defaults.withCredentials = true;
 export default class ModalParent extends Component {
   state = {
     open: false,
-    value: "Please Select A Staff Member",
+    addPlaceholder: "Select Staff Member",
+    addSelect: undefined,
     startTime: undefined,
     endTime: undefined,
 
@@ -65,7 +67,15 @@ export default class ModalParent extends Component {
   closeAddEmployeeModal = e => {
     e.preventDefault()
     this.setState({
-        addEmployeeForm: false
+      addEmployeeForm: false,
+      currentRosterId: undefined,
+      currentRosterLocation: undefined,
+      currentRosterDate: undefined,
+      addPlaceholder: "Select Staff Member",
+      addSelect: undefined,
+      startTime: undefined,
+      endTime: undefined,
+
       })
   }
 
@@ -115,7 +125,19 @@ export default class ModalParent extends Component {
   selectStaff = this.selectStaff.bind(this);
 
   selectStaff(event) {
-    this.setState({value: event.target.value});
+    console.log(this.state.availableStaff)
+    const addSelection = event.target.id
+    this.state.availableStaff.allStaff.forEach(employee =>
+      employee.id === addSelection ?
+        this.setState({
+          addPlaceholder: `Selected - ${employee.firstName} ${employee.lastName}`
+        })
+      : null
+      )
+   this.setState({ 
+    addSelect: addSelection,
+  }) 
+    console.log(this.state.addSelect);
   }
   
   timeChange = (e) => {
@@ -131,7 +153,7 @@ export default class ModalParent extends Component {
     e.preventDefault()
     // // Create new object
     const staff = { 
-      staffMember: this.state.value,
+      staffMember: this.state.addSelect,
       startTime: this.state.startTime,
       endTime: this.state.endTime
     }
@@ -140,9 +162,13 @@ export default class ModalParent extends Component {
     // // Close Modal
     this.setState(() => ({
       addEmployeeForm: false,
+      currentRosterId: undefined,
+      currentRosterLocation: undefined,
+      currentRosterDate: undefined,
+      addPlaceholder: "Select Staff Member",
+      addSelect: undefined,
       startTime: undefined,
       endTime: undefined,
-
     }))
   }
 
@@ -219,7 +245,11 @@ export default class ModalParent extends Component {
               </div>
             {staffList && roster.staff.length > 0 ? 
             <Fragment>
-              <div className="removeBtn">
+              <div className="removeBtn"
+                type="button"
+                htmlFor="staffAddButton"
+                onClick={this.openDeleteEmployeeModal.bind(this, roster._id, roster.location, roster.date)}
+              >
                     <FontAwesomeIcon 
                       className="removeUserIcon"
                       icon="user-times"
@@ -256,10 +286,21 @@ export default class ModalParent extends Component {
         addEmployee={this.addEmployee}
         availableStaff={this.state.availableStaff}
         displayStaffAvailable={this.displayStaffAvailable}
-        value={this.state.value}
         selectStaff={this.selectStaff}
         timeChange={this.timeChange}
         handleAdd={this.handleAdd}
+        addPlaceholder={this.state.addPlaceholder}
+      />
+
+      <DeleteEmployeeModal 
+        open={this.state.deleteEmployeeForm} 
+        onClose={this.closeDeleteEmployeeModal} 
+        deleteEmployee={this.deleteEmployee}
+        availableStaff={this.state.availableStaff}
+        displayStaffAvailable={this.displayStaffAvailable}
+        selectStaff={this.selectStaff}
+        handleDelete={this.handleDelete}
+        deletePlaceholder={this.state.deletePlaceholder}
       />
 
       </Fragment>

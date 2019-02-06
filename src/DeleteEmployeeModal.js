@@ -8,7 +8,7 @@ import Moment from 'react-moment';
 import 'moment-timezone';
 import TimePicker from 'react-time-picker';
 
-class AddEmployeeModal extends Component {
+class DeleteEmployee extends Component {
 
   render () {
     return(
@@ -16,23 +16,14 @@ class AddEmployeeModal extends Component {
 
         <Modal open={this.props.open} onClose={this.props.onClose} center>
           <form action=""></form>
-          <h2 className="modal-header">Add Staff</h2>
+          <h2>Delete Staff</h2>
           <br/>
             <h3>Staff Member:</h3>
           <br/>
         <DropdownStaff availableStaff={this.props.availableStaff} selectStaff={this.props.selectStaff} addPlaceholder={this.props.addPlaceholder} />
           <br/>
-          <br/>
-          <label className="start-time gr">
-            <h3>Start Time:</h3>
-            <input type="time" className="time" id="startTime" placeholder="time" onChange={this.props.timeChange}/>
-          </label>
-          <label className="start-time gr">
-            <h3>End Time:</h3>
-            <input type="time" className="time" id="endTime" placeholder="time" onChange={this.props.timeChange}/>
-          </label>
 
-        <button className="add-staff-btn" onClick={this.props.handleAdd}>+ Shift</button>
+        <button className="delete-staff-btn" onClick={this.props.handleDelete}>- Delete</button>
               
         </Modal>
 
@@ -40,5 +31,5 @@ class AddEmployeeModal extends Component {
   }
 }
 
-export default AddEmployeeModal
+export default DeleteEmployee
 

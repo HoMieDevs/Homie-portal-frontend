@@ -30,12 +30,10 @@ class SubmitUnavailability extends Component {
       // .get(`http://localhost:5000/auth/unavailibility/${userId}`)
       .get(`${process.env.REACT_APP_API_URL}/auth/unavailibility/${userId}`)
       .then(resp => {
-        // console.log(resp.data.UserUnavailability);
         const sorted = resp.data.UserUnavailability.sort((a, b) => {
           return a.date > b.date ? -1 : a.date < b.date ? 1 : 0;
           // return new Date(a.date) > new Date(b.date);
         });
-        // console.log(sorted);
         this.setState({ UserUnavailability: sorted });
       });
   }

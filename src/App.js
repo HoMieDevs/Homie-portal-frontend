@@ -17,6 +17,7 @@ import SelectStaff from './SelectStaff';
 import MyInfo from './MyInfo';
 import ReportHours from './ReportHours';
 import AllStaff from './AllStaff';
+import Approvals from './Approvals';
 
 library.add(faUser, faHome, faUserTimes, faSignOutAlt, faCalendarAlt, faCalendarTimes, faClock, faSync, faChevronUp, faUserPlus, faChevronCircleRight, faChevronCircleLeft );
 
@@ -52,6 +53,7 @@ class App extends Component {
           <PrivateRoute exact path="/rosteradd" component={RosterAdd} />
           <PrivateRoute path="/allstaff" component={AllStaff} />
           <PrivateRoute path="/staffselect" component={SelectStaff} />
+          <PrivateRoute exact path="/approvals" component={Approvals} />
           </div>
         </BrowserRouter>
         </div>

@@ -20,7 +20,7 @@ class AddEmployeeModal extends Component {
           <br/>
             <h3>Staff Member:</h3>
           <br/>
-        <DropdownStaff availableStaff={this.props.availableStaff} selectStaff={this.props.selectStaff} addPlaceholder={this.props.addPlaceholder} />
+        <DropdownStaff availableStaff={this.props.availableStaff} selectStaff={this.props.selectStaff} addPlaceholder={this.props.addPlaceholder} dropAddClass={this.props.dropAddClass}/>
           <br/>
           <br/>
           <label className="start-time gr">

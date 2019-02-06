@@ -57,7 +57,11 @@ li:last-child {
   border-color: none;
 }
 .available:hover {
-  background-color:rgba(102, 255, 0, 0.168);
+  background-color:rgba(167, 229, 255, 0.344);
+}
+
+.selected-add {
+  background-color:rgba(167, 229, 255, 0.344)
 }
 
 .unavailable{

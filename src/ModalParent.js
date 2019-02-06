@@ -23,15 +23,18 @@ export default class ModalParent extends Component {
     addSelect: undefined,
     startTime: undefined,
     endTime: undefined,
-
+    dropAddClass: "dropdown",
     rosters: undefined,
     staffList: undefined,
     displayStaffAvailable:  false,
+    deleteStaff: undefined,
+    deleteEmployeeForm: false,
     availableStaff: undefined,
     addEmployeeForm: false,
     currentRosterId: undefined,
     currentRosterLocation: undefined,
     currentRosterDate: undefined,
+    // unavailablePlaceholder: undefined
   }
 
   componentDidMount = () => {
@@ -50,6 +53,17 @@ export default class ModalParent extends Component {
       addEmployeeForm: true
     })
     this.getRostersAvailableStaff(rosterLocation, rosterDate)
+  }
+  openDeleteEmployeeModal = ( rosterId, rosterLocation, rosterDate, e) => {
+    e.preventDefault()
+    // set state of selected roster: id, location and date
+    this.setState({
+      currentRosterId: rosterId,
+      currentRosterLocation: rosterLocation,
+      currentRosterDate: rosterDate,
+      addDeleteForm: true
+    })
+    this.getRostersDeleteStaff(rosterLocation, rosterDate)
   }
 
   openDeleteEmployeeModal = ( rosterId, rosterLocation, rosterDate, e ) => {
@@ -75,7 +89,7 @@ export default class ModalParent extends Component {
       addSelect: undefined,
       startTime: undefined,
       endTime: undefined,
-
+      dropAddClass: "dropdown"
       })
   }
 
@@ -104,6 +118,15 @@ export default class ModalParent extends Component {
         }) 
       })
   }
+  getRostersDeleteStaff = (rosterLocation, rosterDate) => {
+    const rosterDayUrl = `http://localhost:5000/auth/staff/${rosterLocation}/${rosterDate}`
+    axios.get(rosterDayUrl)
+      .then(resp => {
+        this.setState({ 
+          deleteStaff: resp.data,
+        }) 
+      })
+  }
 
   addEmployee = (staff) => {
     const url = `http://localhost:5000/auth/roster/${this.state.currentRosterId}`
@@ -129,8 +152,17 @@ export default class ModalParent extends Component {
     const addSelection = event.target.id
     this.state.availableStaff.allStaff.forEach(employee =>
       employee.id === addSelection ?
+      // employee.unavail ?
+      //   employee.unavail.map( un =>
+      //     un.date === currentRosterDate ?
+      //     this.setState({
+      //       unavailablePlaceholder: `${un.startTime} - ${un.endTime}`
+      //     })
+      //     : null
+      //   )
         this.setState({
-          addPlaceholder: `Selected - ${employee.firstName} ${employee.lastName}`
+          addPlaceholder: `Selected - ${employee.firstName} ${employee.lastName}`,
+          dropAddClass: "dropdown selected-add"
         })
       : null
       )
@@ -169,6 +201,7 @@ export default class ModalParent extends Component {
       addSelect: undefined,
       startTime: undefined,
       endTime: undefined,
+      dropAddClass: "dropdown"
     }))
   }
 
@@ -222,7 +255,8 @@ export default class ModalParent extends Component {
           />
         </div>
 
-
+      <div className="weekRoster">
+    
       {rosters && rosters.length !== 0 ? 
         rosters.map((roster, index) => 
           roster._id && roster.location && roster.date ?
@@ -279,7 +313,7 @@ export default class ModalParent extends Component {
           : null
         )
       : null }
-                  
+      </div>    
       <AddEmployeeModal 
         open={this.state.addEmployeeForm} 
         onClose={this.closeAddEmployeeModal} 
@@ -290,6 +324,7 @@ export default class ModalParent extends Component {
         timeChange={this.timeChange}
         handleAdd={this.handleAdd}
         addPlaceholder={this.state.addPlaceholder}
+        dropAddClass={this.state.dropAddClass}
       />
 
       <DeleteEmployeeModal 
@@ -301,10 +336,12 @@ export default class ModalParent extends Component {
         selectStaff={this.selectStaff}
         handleDelete={this.handleDelete}
         deletePlaceholder={this.state.deletePlaceholder}
+
       />
 
       </Fragment>
       ) 
   }
+  
 
 }

@@ -30,9 +30,8 @@ class Dropdown extends React.Component {
   
     render() {
       return (
-          <div  className="dropdown" >
+          <div  className={this.props.dropAddClass} >
            <div className="button" onClick={this.showDropdownMenu}>{this.props.addPlaceholder}</div>
-           
             { this.state.displayMenu ? 
               this.props.availableStaff ? 
                 this.props.availableStaff.allStaff ?

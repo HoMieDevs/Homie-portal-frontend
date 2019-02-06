@@ -20,19 +20,34 @@ export default class Approvals extends Component {
       })
   }
 
-  setApproved = () => {
-      if(this.state.staffSchema) {
-          this.state.staffSchema.map(s => {
-              s.unavailability.map(u => {
-                  return u.approved
-              })
-          })
-      }
+  changeApproved = (id, unid) => {
+    const unUrl = `http://localhost:5000/auth/unavailabilityapprove/${id}/${unid}`
+
+    const data = true
+    axios.put(unUrl, data)
+      .then(resp => {
+        this.setState({ message: 'unavailability approved', error: null})
+      })
+      .catch(err => {
+        if (err.response === 403) {
+          this.setState({ error: 'unavailability was not approved', message: null})
+        }
+      })
   }
 
-  handleClick() {
-    this.setState({ approved: true })
-    console.log("button clicked")
+  rejectUn = (id, unid) => {
+    const unUrl = `http://localhost:5000/auth/unavailability/${id}/${unid}`
+
+    const data = true
+    axios.delete(unUrl, data)
+      .then(resp => {
+        this.setState({ message: 'unavailability approved', error: null})
+      })
+      .catch(err => {
+        if (err.response === 403) {
+          this.setState({ error: 'unavailability was not approved', message: null})
+        }
+      })
   }
 
   render() {
@@ -48,12 +63,17 @@ export default class Approvals extends Component {
 
              {
                 allStaff.map(s => {
+                    console.log(s)
                     return s.unavailability.length > 0 ? 
                         s.unavailability.map(u => {
                             return u.approved ? null :
                             <div key={u._id}>
-                                <p>{s.firstName} {s.lastName} {u.date} {u.startTime}-{u.endTime}</p>
-                                <button onClick={this.handleClick}>Approve</button>
+                                <p>{s.firstName} {s.lastName}</p>
+                                <p><Moment format="ddd Do MMM" date={u.date} /></p>
+                                <p>{u.startTime}-{u.endTime}</p>
+                                <p>{u.comment}</p>
+                                <button onClick={() => this.changeApproved(s._id, u._id)}>Approve</button>
+                                <button onClick={() => this.rejectUn(s._id, u._id)}>Reject</button>
                             </div>
                         }) : null
                 })
@@ -70,8 +90,11 @@ export default class Approvals extends Component {
                     return s.unavailability.length > 0 ? 
                         s.unavailability.map(u => {
                             return u.approved ?
-                            <div>
-                                <p key={u._id}>{s.firstName} {s.lastName} {u.date} {u.startTime}-{u.endTime}</p>
+                            <div key={u._id}>
+                                <p>{s.firstName} {s.lastName}</p>
+                                <p><Moment format="ddd Do MMM" date={u.date} /></p>
+                                <p>{u.startTime}-{u.endTime}</p>
+                                <p>{u.comment}</p>
                             </div>
                             : null
                         }) : null

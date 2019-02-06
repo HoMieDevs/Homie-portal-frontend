@@ -20,19 +20,20 @@ export default class Approvals extends Component {
       })
   }
 
-  setApproved = () => {
-      if(this.state.staffSchema) {
-          this.state.staffSchema.map(s => {
-              s.unavailability.map(u => {
-                  return u.approved
-              })
-          })
-      }
-  }
+  changeApproved = (id, unid) => {
 
-  handleClick() {
-    this.setState({ approved: true })
-    console.log("button clicked")
+    const unUrl = `http://localhost:5000/auth/unavailabilityapprove/${id}/${unid}`
+
+    const data = true
+    axios.put(unUrl, data)
+      .then(resp => {
+        this.setState({ message: 'unavailability approved', error: null})
+      })
+      .catch(err => {
+        if (err.response === 403) {
+          this.setState({ error: 'unavailability was not approved', message: null})
+        }
+      })
   }
 
   render() {
@@ -48,12 +49,16 @@ export default class Approvals extends Component {
 
              {
                 allStaff.map(s => {
+                    console.log(s)
                     return s.unavailability.length > 0 ? 
                         s.unavailability.map(u => {
                             return u.approved ? null :
                             <div key={u._id}>
-                                <p>{s.firstName} {s.lastName} {u.date} {u.startTime}-{u.endTime}</p>
-                                <button onClick={this.handleClick}>Approve</button>
+                                <p>{s.firstName} {s.lastName}</p>
+                                <p>{u.date}</p>
+                                <p>{u.startTime}-{u.endTime}</p>
+                                <p>{u.comment}</p>
+                                <button onClick={() => this.changeApproved(s._id, u._id)}>Approve</button>
                             </div>
                         }) : null
                 })
@@ -70,8 +75,11 @@ export default class Approvals extends Component {
                     return s.unavailability.length > 0 ? 
                         s.unavailability.map(u => {
                             return u.approved ?
-                            <div>
-                                <p key={u._id}>{s.firstName} {s.lastName} {u.date} {u.startTime}-{u.endTime}</p>
+                            <div key={u._id}>
+                                <p>{s.firstName} {s.lastName}</p>
+                                <p>{u.date}</p>
+                                <p>{u.startTime}-{u.endTime}</p>
+                                <p>{u.comment}</p>
                             </div>
                             : null
                         }) : null

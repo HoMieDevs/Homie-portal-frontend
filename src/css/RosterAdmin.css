@@ -77,6 +77,12 @@
   box-shadow: inset 0px 0px 15px 0px rgba(0,0,0,0.7);
 }
 
+.addStaffBtn:hover {
+  background-color: rgb(42, 177, 203);
+  box-shadow: inset 0px 0px 17px 0px rgba(0,0,0,0.9);
+
+}
+
 .addUserIcon {
   align-self: center;
   justify-self: start;
@@ -167,6 +173,10 @@
   justify-self: end;
   display: grid;
   cursor: pointer;
+}
+
+.removeBtn:hover {
+  background-color: rgb(220, 107, 107);
 }
 
 .removeUserIcon {

@@ -9,6 +9,7 @@ export default class Login extends Component {
   state = {};
 
   submitForm = e => {
+    // console.log("logging in");
     e.preventDefault();
     const email = e.target.form[0].value;
     const password = e.target.form[1].value;

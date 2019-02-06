@@ -19,8 +19,8 @@ export default class ModalParent extends Component {
   state = {
     open: false,
     value: "Please Select A Staff Member",
-    start: "10:00",
-    end: "10:00",
+    startTime: undefined,
+    endTime: undefined,
 
     rosters: undefined,
     staffList: undefined,
@@ -118,22 +118,31 @@ export default class ModalParent extends Component {
     this.setState({value: event.target.value});
   }
   
-  startChange = time => this.setState({ start: time })
-  endChange = time => this.setState({ end: time })
+  timeChange = (e) => {
+    const { value, id } = e.currentTarget;
+    this.setState({ [id]: value });
+  };
+
+
+  // startChange = time => this.setState({ startTime: time })
+  // endChange = time => this.setState({ endTime: time })
 
   handleAdd = (e) => {
     e.preventDefault()
     // // Create new object
     const staff = { 
       staffMember: this.state.value,
-      startTime: this.state.start,
-      endTime: this.state.end
+      startTime: this.state.startTime,
+      endTime: this.state.endTime
     }
     // Send to server
     this.addEmployee(staff)
     // // Close Modal
     this.setState(() => ({
-      addEmployeeForm: false
+      addEmployeeForm: false,
+      startTime: undefined,
+      endTime: undefined,
+
     }))
   }
 
@@ -191,7 +200,7 @@ export default class ModalParent extends Component {
       {rosters && rosters.length !== 0 ? 
         rosters.map((roster, index) => 
           roster._id && roster.location && roster.date ?
-            <div className="staffedDayContainer">
+            <div key={index} className="staffedDayContainer">
               <div className="addStaffBtn"
                 type="button"
                 htmlFor="staffAddButton"
@@ -206,7 +215,7 @@ export default class ModalParent extends Component {
                 />
               </div>    
               <div className="dateContainer">
-                <p className="rostDayName">{roster.date}</p>
+                <p className="rostDayName"><Moment format="ddd Do MMM" date={roster.date} /></p>
               </div>
             {staffList && roster.staff.length > 0 ? 
             <Fragment>
@@ -249,10 +258,7 @@ export default class ModalParent extends Component {
         displayStaffAvailable={this.displayStaffAvailable}
         value={this.state.value}
         selectStaff={this.selectStaff}
-        startChange={this.startChange}
-        endChange={this.endChange}
-        start={this.state.start}
-        end={this.state.end}
+        timeChange={this.timeChange}
         handleAdd={this.handleAdd}
       />
 

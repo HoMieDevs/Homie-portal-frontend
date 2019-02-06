@@ -17,23 +17,27 @@
 .dropdown {
   position: relative;
   display: inline-block;
-  width: 300px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  width: 340px;
+  border: 1.5px solid #868686;
+  border-radius: 10px;
+  /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
 }
 
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  top:43px;
-  right:0px;
-  width: 300px;
+  padding-top: 10px;
+  top:35px;
+  right: -1px;
+  width: 340px;
   background-color: white;
   font-size: 12px;
   font-family: 'Circular Book';
   position: absolute;
   border-radius: 0px 0px 10px 10px;
-
+  border: 1.5px solid #868686;
+  border-top: none;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
@@ -41,20 +45,19 @@ ul {
 .unavailable-red {
   color: rgb(243, 96, 96);
 }
-li a {
-  color: #000;
-  text-decoration: none;
-}
+
 li {
+  widows: -10px;
   padding: 8px 16px;
   border-bottom: 1px solid #e5e5e5;
 }
 li:last-child {
-  border-bottom: none;
+  border-bottom: 1px;
+  border-radius: 0px 0px 10px 10px;
+  border-color: none;
 }
 li:hover {
   background-color: #e5e5e5;
-  color: white;
 }
 .button{
   width:178px;

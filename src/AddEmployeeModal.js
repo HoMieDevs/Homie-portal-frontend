@@ -17,10 +17,12 @@ class AddEmployeeModal extends Component {
         <Modal open={this.props.open} onClose={this.props.onClose} center>
           <form action=""></form>
           <h2>Add Staff</h2>
-        <DropdownStaff />
-        <label>
-            Staff Member:
           <br/>
+            <h3>Staff Member:</h3>
+          <br/>
+        <DropdownStaff availableStaff={this.props.availableStaff} />
+
+        {/* <label>
             <select value={this.props.value} onChange={this.props.selectStaff} >
               <option value=''>Select A Staff Member</option>
             {this.props.availableStaff ? 
@@ -39,49 +41,20 @@ class AddEmployeeModal extends Component {
               : console.log("no availableStaff.allStaff")
             : console.log("no availableStaff?")} 
             </select>
+          </label> */}
+
+
+          <br/>
+          <br/>
+          <label className="start-time gr">
+            <h3>Start Time:</h3>
+            <input type="time" className="time" id="startTime" placeholder="time" onChange={this.props.timeChange}/>
+          </label>
+          <label className="start-time gr">
+            <h3>End Time:</h3>
+            <input type="time" className="time" id="endTime" placeholder="time" onChange={this.props.timeChange}/>
           </label>
 
-          
-          <br/>
-          <br/>
-          <br/>
-          <label>Start Time:</label>
-          <br/>
-          <TimePicker
-          hourHandLength={45}
-          hourHandOppositeLength={15}
-          hourHandWidth={6}
-          hourMarksLength={16}
-          hourMarksWidth={6}
-          isOpen={null}
-          locale={"en-US"}
-          maxDetail={"minute"}
-          minuteHandLength={67}
-          minuteHandOppositeLength={15}
-          minuteHandWidth={4}
-          minuteMarksWidth={2}
-          onChange={this.props.startChange}
-          value={this.props.start}
-        />
-          <br/>
-          <label>End Time:</label>
-          <br/>
-          <TimePicker
-          hourHandLength={45}
-          hourHandOppositeLength={15}
-          hourHandWidth={6}
-          hourMarksLength={16}
-          hourMarksWidth={6}
-          isOpen={null}
-          locale={"en-US"}
-          maxDetail={"minute"}
-          minuteHandLength={67}
-          minuteHandOppositeLength={15}
-          minuteHandWidth={4}
-          minuteMarksWidth={2}
-          onChange={this.props.endChange}
-          value={this.props.emd}
-        />
         <button className="add-staff-btn" onClick={this.props.handleAdd}>+ Shift</button>
               
         </Modal>

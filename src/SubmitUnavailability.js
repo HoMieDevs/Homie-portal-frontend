@@ -1,9 +1,7 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import axios from "axios";
 import "./css/Register.css";
 axios.defaults.withCredentials = true;
-
-var moment = require("moment");
 
 class SubmitUnavailability extends Component {
   state = {
@@ -13,7 +11,8 @@ class SubmitUnavailability extends Component {
   componentDidMount() {
     const userId = localStorage.getItem("userId");
     axios
-      .get(`http://localhost:5000/auth/unavailibility/${userId}`)
+      // .get(`http://localhost:5000/auth/unavailibility/${userId}`)
+      .get(`${process.env.REACT_APP_API_URL}/auth/unavailibility/${userId}`)
       .then(resp => {
         console.log(resp.data.UserUnavailability);
         const sorted = resp.data.UserUnavailability.sort((a, b) => {
@@ -28,7 +27,8 @@ class SubmitUnavailability extends Component {
   componentDidUpdate() {
     const userId = localStorage.getItem("userId");
     axios
-      .get(`http://localhost:5000/auth/unavailibility/${userId}`)
+      // .get(`http://localhost:5000/auth/unavailibility/${userId}`)
+      .get(`${process.env.REACT_APP_API_URL}/auth/unavailibility/${userId}`)
       .then(resp => {
         const sorted = resp.data.UserUnavailability.sort((a, b) => {
           return a.date > b.date ? -1 : a.date < b.date ? 1 : 0;
@@ -38,12 +38,16 @@ class SubmitUnavailability extends Component {
       });
   }
 
-  deleteTimeOff = (unid) => {
+  deleteTimeOff = unid => {
     const userId = localStorage.getItem("userId");
-    axios.delete(`http://localhost:5000/auth/unavailability/${userId}/${unid}`)
-    .then(console.log('Deleted'))
-    .catch(err => console.log(err))
-  }
+    axios
+      // .delete(`http://localhost:5000/auth/unavailability/${userId}/${unid}`)
+      .delete(
+        `${process.env.REACT_APP_API_URL}/auth/unavailability/${userId}/${unid}`
+      )
+      .then(console.log("Deleted"))
+      .catch(err => console.log(err));
+  };
 
   render() {
     return (
@@ -53,7 +57,12 @@ class SubmitUnavailability extends Component {
             <div>
               <li>{unavailability.date}</li>
               <li>{unavailability.comment}</li>
-              <input onClick={() => this.deleteTimeOff(unavailability._id)} className="delete-button" type="delete" value="Delete" />
+              <input
+                onClick={() => this.deleteTimeOff(unavailability._id)}
+                className="delete-button"
+                type="delete"
+                value="Delete"
+              />
             </div>
           );
         })}

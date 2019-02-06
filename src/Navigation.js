@@ -22,8 +22,10 @@ export default class Navigation extends Component {
   }
   render() {
     const loggedIn = localStorage.getItem('isAuthenticated')
+    // const isAdmin = localStorage.getItem('isAdmin')
   return (
     loggedIn ?
+
       <React.Fragment>
 
         <header className="headerContainer">

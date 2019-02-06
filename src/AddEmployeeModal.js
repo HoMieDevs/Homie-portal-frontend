@@ -3,6 +3,7 @@ import { render } from "react-dom";
 import Modal from "react-responsive-modal";
 import './css/AddStaffModal.css'
 import AllStaff from './AllStaff';
+import DropdownStaff from './DropdownStaff';
 import Moment from 'react-moment';
 import 'moment-timezone';
 import TimePicker from 'react-time-picker';
@@ -17,6 +18,10 @@ class AddEmployeeModal extends Component {
         <Modal open={this.props.open} onClose={this.props.onClose} center>
           <form action=""></form>
           <h2>Add Staff</h2>
+
+        <DropdownStaff />
+
+
         <label>
             Staff Member:
           <br/>

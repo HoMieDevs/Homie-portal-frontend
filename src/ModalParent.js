@@ -37,6 +37,7 @@ export default class ModalParent extends Component {
     this.getAllStaff()
   }
 
+
   openAddEmployeeModal = ( rosterId, rosterLocation, rosterDate, e) => {
     e.preventDefault()
     // set state of selected roster: id, location and date
@@ -88,15 +89,17 @@ export default class ModalParent extends Component {
       })
   }
 
-  addEmployee = (employee) => {
+  addEmployee = (staff) => {
     console.log("ADD EMPLOYEE IS RUNNING")
-    console.log(employee)
+    console.log(staff)
     const url = `http://localhost:5000/auth/roster/${this.state.currentRosterId}`
-    axios.put(url, employee)
+    axios.put(url, staff)
       .then(resp => {
         // console.log(resp)
         this.setState({ message: 'employee successfully added to shift', error: null})
-        console.log("put request went through")
+        console.log(resp)
+        this.getAllRosters()
+        this.getAllStaff()
       })
       .catch(err => {
         // console.log(err.response)
@@ -120,14 +123,14 @@ export default class ModalParent extends Component {
     e.preventDefault()
     console.log("HANDLE ADD IS RUNNING")
     // // Create new object
-    const employeeToAdd = { 
+    const staff = { 
       staffMember: this.state.value,
       startTime: this.state.start,
       endTime: this.state.end
     }
-    console.log(employeeToAdd)
+    console.log(staff)
     // Send to server
-    this.addEmployee(employeeToAdd)
+    this.addEmployee(staff)
     // // Close Modal
     this.setState(() => ({
       addEmployeeForm: false

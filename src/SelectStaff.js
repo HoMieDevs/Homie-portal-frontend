@@ -32,10 +32,6 @@ export default class SelectStaff extends Component {
   selectStaff(event) {
     this.setState({value: event.target.value});
   }
-
-  selectStafff(event) {
-    this.setState({value: event.target.value});
-  }
   
   onChange = time => this.setState({ start: time })
   onChange2 = time => this.setState({ end: time })

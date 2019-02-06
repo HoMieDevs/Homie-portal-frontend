@@ -1,3 +1,4 @@
+
 // import React, { Component, Fragment } from "react";
 // import axios from "axios";
 // import Navigation from "./Navigation";
@@ -6,6 +7,7 @@
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import "moment-timezone";
 // axios.defaults.withCredentials = true;
+
 
 // export default class Roster extends Component {
 //   state = {
@@ -32,7 +34,6 @@
 //     // const oneRoster = this.state.rosters.find(r => r._id === id);
 //     const allStaff = this.state.staffSchema;
 //     const allRosters = this.state.rosters;
-
 //     return (
 //       <Fragment>
 //         <Navigation />

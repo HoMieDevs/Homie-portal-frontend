@@ -26,7 +26,15 @@ class SubmitUnavailability extends Component {
   }
 
   componentDidUpdate() {
+    
+  }
+
+  deleteTimeOff = (unid) => {
     const userId = localStorage.getItem("userId");
+    axios.delete(`http://localhost:5000/auth/unavailability/${userId}/${unid}`)
+    .then(console.log('Deleted'))
+    .catch(err => console.log(err))
+
     axios
       .get(`http://localhost:5000/auth/unavailibility/${userId}`)
       .then(resp => {
@@ -38,23 +46,23 @@ class SubmitUnavailability extends Component {
       });
   }
 
-  deleteTimeOff = (unid) => {
-    const userId = localStorage.getItem("userId");
-    axios.delete(`http://localhost:5000/auth/unavailability/${userId}/${unid}`)
-    .then(console.log('Deleted'))
-    .catch(err => console.log(err))
-  }
-
   render() {
     return (
       <div className="main">
         {this.state.UserUnavailability.map((unavailability, index) => {
+          // console.log(unavailability.allDay)
           return (
-            <div>
-              <li>{unavailability.date}</li>
-              <li>{unavailability.comment}</li>
-              <input onClick={() => this.deleteTimeOff(unavailability._id)} className="delete-button" type="delete" value="Delete" />
+            <Fragment>
+            <div className="individual-time-off">
+              <li className="time-off-date"><span>Date: </span> {unavailability.date}</li>
+              <li className="time-off-start-time"><span>Start Time: </span> {unavailability.startTime}</li>
+              <li className="time-off-end-time"><span>End Time: </span> {unavailability.endTime}</li>
+              <li className="time-off-all-day"><span>{unavailability.allDay ? <p>All Day: Yes</p>: null }</span></li>
+              <hr className="time-off-blue-line"/>
+              <li className="time-off-comment"><span>Comment: </span>{unavailability.comment}</li>
             </div>
+            <input onClick={() => this.deleteTimeOff(unavailability._id)} className="delete-button" type="delete" value="Delete" />
+            </Fragment>
           );
         })}
       </div>

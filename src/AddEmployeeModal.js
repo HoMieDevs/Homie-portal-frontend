@@ -11,17 +11,13 @@ import TimePicker from 'react-time-picker';
 class AddEmployeeModal extends Component {
 
   render () {
-    // console.log(this.props)
     return(
 
 
         <Modal open={this.props.open} onClose={this.props.onClose} center>
           <form action=""></form>
           <h2>Add Staff</h2>
-
         <DropdownStaff />
-
-
         <label>
             Staff Member:
           <br/>
@@ -45,8 +41,7 @@ class AddEmployeeModal extends Component {
             </select>
           </label>
 
-        
-
+          
           <br/>
           <br/>
           <br/>

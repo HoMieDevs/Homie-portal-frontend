@@ -41,9 +41,6 @@ export default class ModalParent extends Component {
   openAddEmployeeModal = ( rosterId, rosterLocation, rosterDate, e) => {
     e.preventDefault()
     // set state of selected roster: id, location and date
-    // console.log(rosterLocation)
-    // console.log(rosterId)
-    // console.log(rosterDate)
     this.setState({
       currentRosterId: rosterId,
       currentRosterLocation: rosterLocation,
@@ -51,6 +48,18 @@ export default class ModalParent extends Component {
       addEmployeeForm: true
     })
     this.getRostersAvailableStaff(rosterLocation, rosterDate)
+  }
+
+  openDeleteEmployeeModal = ( rosterId, rosterLocation, rosterDate, e ) => {
+    e.preventDefault()
+    // set state of selected roster: id, location and date
+    this.setState({
+      currentRosterId: rosterId,
+      currentRosterLocation: rosterLocation,
+      currentRosterDate: rosterDate,
+      addDeleteForm: true
+    })
+    this.getStaffToDelete(rosterLocation, rosterDate)
   }
 
   closeAddEmployeeModal = e => {
@@ -77,9 +86,6 @@ export default class ModalParent extends Component {
   }
 
   getRostersAvailableStaff = (rosterLocation, rosterDate) => {
-    console.log("ROSTER AVAILABLE STAFF FUNCTION RUNNING")
-    console.log(`the roster location is ${rosterLocation}`)
-    console.log(`the roster date is ${rosterDate}`)
     const rosterDayUrl = `http://localhost:5000/auth/staff/${rosterLocation}/${rosterDate}`
     axios.get(rosterDayUrl)
       .then(resp => {
@@ -90,19 +96,15 @@ export default class ModalParent extends Component {
   }
 
   addEmployee = (staff) => {
-    console.log("ADD EMPLOYEE IS RUNNING")
-    console.log(staff)
     const url = `http://localhost:5000/auth/roster/${this.state.currentRosterId}`
     axios.put(url, staff)
       .then(resp => {
-        // console.log(resp)
         this.setState({ message: 'employee successfully added to shift', error: null})
         console.log(resp)
         this.getAllRosters()
         this.getAllStaff()
       })
       .catch(err => {
-        // console.log(err.response)
         if (err.response === 403) {
           this.setState({ error: 'employee addition unsuccessful', message: null})
           console.log("put request failed")
@@ -121,20 +123,27 @@ export default class ModalParent extends Component {
 
   handleAdd = (e) => {
     e.preventDefault()
-    console.log("HANDLE ADD IS RUNNING")
     // // Create new object
     const staff = { 
       staffMember: this.state.value,
       startTime: this.state.start,
       endTime: this.state.end
     }
-    console.log(staff)
     // Send to server
     this.addEmployee(staff)
     // // Close Modal
     this.setState(() => ({
       addEmployeeForm: false
     }))
+  }
+
+  handleDelete = (e) => {
+    e.preventDefault()
+    const deleteUrl = `http://localhost:5000/auth/roster/${this.state.deleteStaff}`
+    // axios.delete(url) {
+    //   router.delete('/roster/:id/:sid', isAuthenticated, isAdmin,  (req, res) => {
+    //   const id = req.params.id
+    //   const sid = req.params.sid
   }
 
   toggleStaffDrop = () => {
@@ -157,24 +166,13 @@ export default class ModalParent extends Component {
   render() {
     const staffList = this.state.staffList
     const rosters = this.state.rosters
-    // console.log(this.state.currentRosterDate)
-    // console.log(this.state.currentRosterLocation)
-    // console.log(this.state.currentRosterId)
     console.log(this.state)
     const {open} = this.state
+    
     return (
      <Fragment>
-        <Navigation/>
-{/* 
-        <div >
-          <h2>react-responsive-modal</h2>
-          <button onClick={this.onOpenModal}>Open modal</button>
-        </div> */}
-
-        {/* <AddEmployeeModal /> */}
-        {/* <RosterAdd /> */}
+     <Navigation/>
         <h2 className="storeHeading">Store Roster</h2>
-        {/* <h3>Office Roster</h3> */}
         <div className="weekDateContainer">
           <FontAwesomeIcon 
             className="chevronCircleLeft"
@@ -190,82 +188,73 @@ export default class ModalParent extends Component {
         </div>
 
 
-
-        <div className="weekRoster">
-        {rosters ?
-          rosters.length > 0 ?
-          rosters.map((roster, index) => 
-            roster._id && roster.location && roster.date ?
-            <div key={index} className="staffedDayContainer">
+      {rosters && rosters.length !== 0 ? 
+        rosters.map((roster, index) => 
+          roster._id && roster.location && roster.date ?
+            <div className="staffedDayContainer">
               <div className="addStaffBtn"
                 type="button"
                 htmlFor="staffAddButton"
                 onClick={this.openAddEmployeeModal.bind(this, roster._id, roster.location, roster.date)}
               >
+
                 <FontAwesomeIcon 
                   className="addUserIcon"
                   icon="user-plus"
                   color="#fff"
                   size="lg"
                 />
-              </div>
-          
-          
-          
-          <AddEmployeeModal 
-            open={this.state.addEmployeeForm} 
-            onClose={this.closeAddEmployeeModal} 
-            addEmployee={this.addEmployee}
-            availableStaff={this.state.availableStaff}
-            displayStaffAvailable={this.displayStaffAvailable}
-            value={this.state.value}
-            selectStaff={this.selectStaff}
-            startChange={this.startChange}
-            endChange={this.endChange}
-            start={this.state.start}
-            end={this.state.end}
-            handleAdd={this.handleAdd}
-          />
-          
-          
-          
-          
-          
-          
+              </div>    
               <div className="dateContainer">
                 <p className="rostDayName">{roster.date}</p>
               </div>
+            {staffList && roster.staff.length > 0 ? 
+            <Fragment>
+              <div className="removeBtn">
+                    <FontAwesomeIcon 
+                      className="removeUserIcon"
+                      icon="user-times"
+                      color="#fff"
+                      size="lg"
+                    />
+                  </div>
               <div className="staffContainer">
-              {staffList ? 
-                staffList.map(oneStaff =>
-                  roster.staff.length > 0 ? 
-                    roster.staff.map((employee, index) => {
-                      return employee && oneStaff ?
-                        employee.staffMember === oneStaff._id  ? 
-                          <Fragment key={index}>
-                            <p>{oneStaff.firstName} {oneStaff.lastName}</p>
-                            <p>{employee.startTime}-{employee.endTime}</p>
-                          </Fragment>
-                        : 
-                        null
-                      : null
-                    })
-                  : 
-                  null
-                )
-              :
-              null
-              }        
-              </div>
+              {staffList.map(oneStaff =>
+                roster.staff.map((employee, index) => { 
+                  return employee && oneStaff &&  employee.staffMember === oneStaff._id ?
+                    <Fragment key={index}>
+                      <p>{oneStaff.firstName} {oneStaff.lastName}</p>
+                      <p>{employee.startTime}-{employee.endTime}</p>
+                    </Fragment>
+                  : null
+                 })) 
+                 }                  
+                   </div>
+                   </Fragment>
+            : <div className="emptyStaffContainer">
+                <p>
+                  No Staff Selected
+                </p>
+              </div>  } 
             </div>
-            : console.log("roster.id location or date doesnt exist")
-          )
-          :null
-        : 
-          null
-        }
-          
-               </div>
+          : null
+        )
+      : null }
+                  
+      <AddEmployeeModal 
+        open={this.state.addEmployeeForm} 
+        onClose={this.closeAddEmployeeModal} 
+        addEmployee={this.addEmployee}
+        availableStaff={this.state.availableStaff}
+        displayStaffAvailable={this.displayStaffAvailable}
+        value={this.state.value}
+        selectStaff={this.selectStaff}
+        startChange={this.startChange}
+        endChange={this.endChange}
+        start={this.state.start}
+        end={this.state.end}
+        handleAdd={this.handleAdd}
+      />
 
       </Fragment>
       ) 

@@ -54,10 +54,8 @@ export default class TimeOff extends Component {
       const { allDay, startTime, endTime, comment } = this.state;
       const userId = localStorage.getItem("userId");
 
-      // const url = `http://localhost:5000/auth/unavailability/${userId}/`;
-      const url = `${
-        process.env.REACT_APP_API_URL
-      }/auth/unavailability/${userId}/`;
+      const url = `${process.env.REACT_APP_DEV_API_URL}/auth/unavailability/${userId}/`;
+      // const url = `${process.env.REACT_APP_API_URL}/auth/unavailability/${userId}/`;
 
       date = moment(new Date(this.state.startDate))
         .add(numOfDays, "days")

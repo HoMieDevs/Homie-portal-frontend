@@ -93,6 +93,7 @@
   background-color: #282828;
   width: 100%;
   grid-template-columns: repeat(4, 1fr);
+  z-index: 10;
 }
 
 .calendar, .timeOff, .hoursNav, .homeNav {

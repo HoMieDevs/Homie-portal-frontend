@@ -20,7 +20,9 @@ import {
   faChevronUp,
   faUserPlus,
   faChevronCircleRight,
-  faChevronCircleLeft
+  faChevronCircleLeft, 
+  faCheckCircle, 
+  faTimesCircle
 } from "@fortawesome/free-solid-svg-icons";
 import RosterAll from "./RosterAll";
 import RosterAllTest from "./RosterAllTest";
@@ -44,7 +46,9 @@ library.add(
   faChevronUp,
   faUserPlus,
   faChevronCircleRight,
-  faChevronCircleLeft
+  faChevronCircleLeft,
+  faCheckCircle, 
+  faTimesCircle
 );
 
 const PrivateRoute = ({ component: Component, ...rest }) => (

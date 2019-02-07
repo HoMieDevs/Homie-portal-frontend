@@ -13,14 +13,6 @@ export default class Home extends Component {
     // user: []
   };
 
-  getAllStaff = () => {
-    // const staffUrl = "http://localhost:5000/crew/users"
-    const staffUrl = `${process.env.REACT_APP_API_URL}/crew/users`;
-    axios.get(staffUrl).then(resp => {
-      this.setState({ staffList: resp.data });
-    });
-  };
-
   componentDidMount = () => {
     // const rosterUrl = "http://localhost:5000/auth/roster";
     const rosterUrl = `${process.env.REACT_APP_API_URL}/auth/roster`;
@@ -45,7 +37,7 @@ export default class Home extends Component {
     return (
       <Fragment>
         <Navigation />
-
+        
         <div className="home">
           <h2>Upcoming Shifts</h2>
           <div className="homeShiftContainer">

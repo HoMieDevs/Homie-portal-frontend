@@ -18,8 +18,13 @@ export default class Navigation extends Component {
     });
   };
   render() {
-    const loggedIn = localStorage.getItem("isAuthenticated");
-    return loggedIn ? (
+
+    const loggedIn = localStorage.getItem('isAuthenticated')
+    // const isAdmin = localStorage.getItem('isAdmin')
+  return (
+    loggedIn ?
+
+
       <React.Fragment>
         <header className="headerContainer">
           {/* >>>>>>>>>>>>>>>>>>>> AVATAR */}
@@ -108,7 +113,7 @@ export default class Navigation extends Component {
           </NavLink>
         </div>
       </React.Fragment>
-    ) : (
+     : 
       <Redirect to="/" />
     );
   }

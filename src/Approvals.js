@@ -17,12 +17,29 @@ export default class Approvals extends Component {
     const staffUrl = "http://localhost:5000/crew/users"
     axios.get(staffUrl)
       .then(resp => {
+        // const sorted = allStaff.map(s => {
+        //   s.unavailability.sort((a, b) => {
+        //     return a.date > b.date ?  -1 : a.date < b.date ? 1 : 0
+        //   })
+        // })
+        // console.log(sorted)
         this.setState({ staffSchema: resp.data })
       })
   }
 
+  // componentDidUpdate = () => {
+  //   const staffUrl = "http://localhost:5000/crew/users"
+  //   axios.get(staffUrl)
+  //     .then(resp => {
+  //       this.setState({ staffSchema: resp.data })
+  //     })
+  // }
+
   changeApproved = (id, unid) => {
     const unUrl = `http://localhost:5000/auth/unavailabilityapprove/${id}/${unid}`
+
+    // const unUrl = `${process.env.REACT_APP_API_URL}/auth/unavailabilityapprove/${id}/${unid}`
+
 
     const data = true
     axios.put(unUrl, data)
@@ -39,14 +56,18 @@ export default class Approvals extends Component {
   rejectUn = (id, unid) => {
     const unUrl = `http://localhost:5000/auth/unavailability/${id}/${unid}`
 
+    // const unUrl = `${process.env.REACT_APP_API_URL}/auth/unavailability/${id}/${unid}`
+    console.log(unid)
+
+
     const data = true
     axios.delete(unUrl, data)
       .then(resp => {
-        this.setState({ message: 'unavailability approved', error: null})
+        this.setState({ message: 'unavailability rejected', error: null})
       })
       .catch(err => {
         if (err.response === 403) {
-          this.setState({ error: 'unavailability was not approved', message: null})
+          this.setState({ error: 'unavailability was not rejected', message: null})
         }
       })
   }

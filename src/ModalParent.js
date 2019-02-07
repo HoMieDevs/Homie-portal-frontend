@@ -236,7 +236,7 @@ export default class ModalParent extends Component {
     e.preventDefault()
     const deleteRostId = this.state.currentRosterId
     const deleteEmployeeId = this.state.deleteSelected
-    const deleteUrl = `http://localhost:5000/auth/roster/${deleteRostId}/${deleteEmployeeId}`
+    const deleteUrl = `${process.env.REACT_APP_API_URL}/auth/roster/${deleteRostId}/${deleteEmployeeId}`
     axios.delete(deleteUrl)
     .then(resp => {
       this.setState({ message: 'employee shift successfully removed', error: null})

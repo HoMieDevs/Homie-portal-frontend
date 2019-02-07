@@ -47,7 +47,7 @@ export default class MyInfo extends Component {
       <Fragment>
         <Navigation />
         <h2>My Info</h2>
-        <FontAwesomeIcon className="avatarIcon" icon="user" size="2x" />
+        <FontAwesomeIcon className="homeAvatarIcon" icon="user" size="2x" />
         <br />
         <button className="myInfoButton">Edit Avatar</button>
         <div className="myInfoText">

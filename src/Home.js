@@ -15,8 +15,8 @@ export default class Home extends Component {
 
   componentDidMount = () => {
     // const rosterUrl = "http://localhost:5000/auth/roster";
-    const rosterUrl = `${process.env.REACT_APP_DEV_API_URL}/auth/roster`
-    // const rosterUrl = `${process.env.REACT_APP_API_URL}/auth/roster`;
+    // const rosterUrl = `${process.env.REACT_APP_DEV_API_URL}/auth/roster`
+    const rosterUrl = `${process.env.REACT_APP_API_URL}/auth/roster`;
     axios.get(rosterUrl).then(resp => {
       this.setState({ rosters: resp.data });
     });
@@ -75,40 +75,6 @@ export default class Home extends Component {
                 : null
             })
           } */}
-
-            {/* <h3>Upcoming Shifts</h3>
-          <div className="homeShiftContainer">
-            <div className="homeShift hs1">
-              <p className="homeDate">Wed 23rd Jan</p>
-              <hr className="blueLine"/>
-              <p className="homeTime">10am - 6pm</p>
-              <p className="homeLocation">In Store</p>
-            </div>
-            <div className="homeShift hs2">
-              <p className="homeDate">Wed 23rd Jan</p>
-              <hr className="blueLine"/>
-              <p className="homeTime">10am - 6pm</p>
-              <p className="homeLocation">In Store</p>
-            </div>
-            <div className="homeShift hs3">
-              <p className="homeDate">Wed 23rd Jan</p>
-              <hr className="blueLine"/>
-              <p className="homeTime">10am - 6pm</p>
-              <p className="homeLocation">In Store</p>
-            </div>
-            <div className="homeShift hs4">
-              <p className="homeDate">Wed 23rd Jan</p>
-              <hr className="blueLine"/>
-              <p className="homeTime">10am - 6pm</p>
-              <p className="homeLocation">In Store</p>
-            </div>
-            <div className="homeShift hs5">
-              <p className="homeDate">Wed 23rd Jan</p>
-              <hr className="blueLine"/>
-              <p className="homeTime">10am - 6pm</p>
-              <p className="homeLocation">In Store</p>
-            </div>
-          </div> */}
           </div>
         </div>
       </Fragment>

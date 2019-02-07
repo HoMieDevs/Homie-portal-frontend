@@ -10,8 +10,8 @@ class CurrentUser extends Component {
 
   componentDidMount() {
     axios
-      .get(`${process.env.REACT_APP_DEV_API_URL}/auth/me`)
-      // .get(`${process.env.REACT_APP_API_URL}/auth/me`)
+      // .get(`${process.env.REACT_APP_DEV_API_URL}/auth/me`)
+      .get(`${process.env.REACT_APP_API_URL}/auth/me`)
       .then(resp => this.setState(resp.data));
   }
 

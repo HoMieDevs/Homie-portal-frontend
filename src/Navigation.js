@@ -8,8 +8,8 @@ axios.defaults.withCredentials = true;
 
 export default class Navigation extends Component {
   logout = e => {
-    const url = `${process.env.REACT_APP_DEV_API_URL}/auth/logout`
-    // const url = `${process.env.REACT_APP_API_URL}/auth/logout`;
+    // const url = `${process.env.REACT_APP_DEV_API_URL}/auth/logout`
+    const url = `${process.env.REACT_APP_API_URL}/auth/logout`;
     axios.get(url).then(resp => {
       console.log(resp);
       localStorage.removeItem("isAuthenticated");

@@ -102,14 +102,16 @@ export default class ModalParent extends Component {
 
 
   getAllRosters = () => {
-    const rosterUrl = "http://localhost:5000/auth/roster"
+    // const rosterUrl = "http://localhost:5000/auth/roster"
+    const rosterUrl = `${process.env.REACT_APP_API_URL}/auth/roster`
     axios.get(rosterUrl)
       .then(resp => {
         this.setState({ rosters: resp.data })        
       })
   }
   getAllStaff = () => {
-    const staffUrl = "http://localhost:5000/crew/users"
+    // const staffUrl = "http://localhost:5000/crew/users"
+    const staffUrl = `${process.env.REACT_APP_API_URL}/crew/users`
     axios.get(staffUrl)
       .then(resp => {
         this.setState({ staffList: resp.data })
@@ -117,7 +119,8 @@ export default class ModalParent extends Component {
   }
 
   getRostersAvailableStaff = (rosterLocation, rosterDate) => {
-    const rosterDayUrl = `http://localhost:5000/auth/staff/${rosterLocation}/${rosterDate}`
+    // const rosterDayUrl = `http://localhost:5000/auth/staff/${rosterLocation}/${rosterDate}`
+    const rosterDayUrl = `${process.env.REACT_APP_API_URL}/${rosterLocation}/${rosterDate}`
     axios.get(rosterDayUrl)
       .then(resp => {
         this.setState({ 
@@ -127,7 +130,8 @@ export default class ModalParent extends Component {
   }
 
   addEmployee = (staff) => {
-    const url = `http://localhost:5000/auth/roster/${this.state.currentRosterId}`
+    // const url = `http://localhost:5000/auth/roster/${this.state.currentRosterId}`
+    const url = `${process.env.REACT_APP_API_URL}/auth/roster/${this.state.currentRosterId}`
     axios.put(url, staff)
       .then(resp => {
         this.setState({ message: 'employee successfully added to shift', error: null})

@@ -16,7 +16,6 @@ export default class MyInfo extends Component {
 
   componentDidMount = () => {
     // const myUrl = `http://localhost:5000/auth/me`
-    // const myUrl = `${process.env.REACT_APP_DEV_API_URL}/auth/me`
     const myUrl = `${process.env.REACT_APP_API_URL}/auth/me`;
     axios.get(myUrl).then(resp => {
       const { _id, firstName, lastName, email, mobile } = resp.data;

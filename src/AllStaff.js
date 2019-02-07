@@ -10,7 +10,6 @@ export default class AllStaff extends Component {
   };
 
   componentDidMount = () => {
-    // const staffUrl = `${process.env.REACT_DEV_APP_API_URL}/crew/users`;
     const staffUrl = `${process.env.REACT_APP_API_URL}/crew/users`;
     axios.get(staffUrl).then(resp => {
       this.setState({ staff: resp.data });

@@ -13,13 +13,30 @@ export default class TimeOff extends Component {
     endTime: null,
     comment: null,
     approved: null,
-  }
+    UserUnavailability: []
+  };
 
   handleInputChange = e => {
-
     const { value, id } = e.currentTarget;
     this.setState({ [id]: value });
   };
+
+  getUnavailabilities = () => {
+    const userId = localStorage.getItem("userId");
+    axios
+      // .get(`${process.env.REACT_APP_DEV_API_URL}/auth/unavailibility/${userId}`)
+      .get(`${process.env.REACT_APP_API_URL}/auth/unavailibility/${userId}`)
+      .then(resp => {
+        console.log(resp.data.UserUnavailability);
+        const sorted = resp.data.UserUnavailability.sort((a, b) => {
+          return a.date > b.date ? -1 : a.date < b.date ? 1 : 0;
+          // return new Date(a.date) > new Date(b.date);
+        });
+        console.log(sorted);
+        this.setState({ UserUnavailability: sorted });
+      });
+  };
+
   submitForm = e => {
     e.preventDefault();
 
@@ -56,7 +73,9 @@ export default class TimeOff extends Component {
       const userId = localStorage.getItem("userId");
 
       // const url = `http://localhost:5000/auth/unavailability/${userId}/`;
-      const url = `${process.env.REACT_APP_API_URL}/auth/unavailability/${userId}/`;
+      const url = `${
+        process.env.REACT_APP_API_URL
+      }/auth/unavailability/${userId}/`;
 
       date = moment(new Date(this.state.startDate))
         .add(numOfDays, "days")
@@ -77,6 +96,8 @@ export default class TimeOff extends Component {
       console.log(data);
 
       promises.push(axios.put(url, data));
+      promises.push(this.getUnavailabilities());
+      console.log(this.getUnavailabilities());
       length++;
       numOfDays += 1;
     }
@@ -102,7 +123,7 @@ export default class TimeOff extends Component {
 
   render() {
     const { error, message } = this.state;
-    console.log(this.state);
+    // console.log(this.state);
     return (
       <Fragment>
         <Navigation />
@@ -183,7 +204,7 @@ export default class TimeOff extends Component {
           {error && <p>{error}</p>}
           {message && <p>{message}</p>}
           <h2>Submitted Time Off</h2>
-          <SubmitUnavailability />
+          <SubmitUnavailability renderPage={this.getUnavailabilities} />
         </div>
       </Fragment>
     );

@@ -12,7 +12,7 @@ class SubmitUnavailability extends Component {
   componentDidMount() {
     const userId = localStorage.getItem("userId");
     axios
-      // .get(`${http://localhost:5000/auth/unavailibility/${userId}`)
+      // .get(`${process.env.REACT_APP_DEV_API_URL}/auth/unavailibility/${userId}`)
       .get(`${process.env.REACT_APP_API_URL}/auth/unavailibility/${userId}`)
       .then(resp => {
         console.log(resp.data.UserUnavailability);
@@ -26,29 +26,41 @@ class SubmitUnavailability extends Component {
   }
 
   componentDidUpdate() {
-    
-  }
-
-  deleteTimeOff = (unid) => {
     const userId = localStorage.getItem("userId");
-    // .delete(`http://localhost:5000/auth/unavailability/${userId}/${unid}`)
-    `${process.env.REACT_APP_API_URL}/auth/unavailability/${userId}/${unid}`
-    .then(console.log('Deleted'))
-    .catch(err => console.log(err))
-
     axios
-      // .get(`http://localhost:5000/auth/unavailibility/${userId}`)
+      // .get(`${process.env.REACT_APP_DEV_API_URL}/auth/unavailibility/${userId}`)
       .get(`${process.env.REACT_APP_API_URL}/auth/unavailibility/${userId}`)
       .then(resp => {
+        console.log(resp.data.UserUnavailability);
         const sorted = resp.data.UserUnavailability.sort((a, b) => {
           return a.date > b.date ? -1 : a.date < b.date ? 1 : 0;
           // return new Date(a.date) > new Date(b.date);
         });
+        console.log(sorted);
         this.setState({ UserUnavailability: sorted });
       });
   }
 
-  render() {
+  // deleteTimeOff = unid => {
+  //   const userId = localStorage.getItem("userId");
+  //   // .delete(`http://localhost:5000/auth/unavailability/${userId}/${unid}`)
+  //   `${process.env.REACT_APP_API_URL}/auth/unavailability/${userId}/${unid}`
+  //     .then(console.log("Deleted"))
+  //     .catch(err => console.log(err));
+  // };
+
+  deleteTimeOff = unid => {
+    const userId = localStorage.getItem("userId");
+    axios
+      .delete(`http://localhost:5000/auth/unavailability/${userId}/${unid}`)
+      // .delete(
+      //   `${process.env.REACT_APP_API_URL}/auth/unavailability/${userId}/${unid}`
+      // )
+      .then(console.log("Deleted"))
+      .catch(err => console.log(err));
+  };
+
+ render() {
     return (
       <div className="main">
         {this.state.UserUnavailability.map((unavailability, index) => {

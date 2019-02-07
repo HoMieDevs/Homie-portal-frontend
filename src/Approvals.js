@@ -37,12 +37,12 @@ export default class Approvals extends Component {
   //     })
   // }
 
+
+
   changeApproved = (id, unid) => {
 
     // const unUrl = `http://localhost:5000/auth/unavailabilityapprove/${id}/${unid}`
     const unUrl = `${process.env.REACT_APP_API_URL}/auth/unavailabilityapprove/${id}/${unid}`
-
-
 
     const data = true
     axios.put(unUrl, data)
@@ -54,15 +54,19 @@ export default class Approvals extends Component {
           this.setState({ error: 'unavailability was not approved', message: null})
         }
       })
+
+      // const staffUrl = "http://localhost:5000/crew/users"
+      const staffUrl = `${process.env.REACT_APP_API_URL}/crew/users`
+        axios.get(staffUrl)
+          .then(resp => {
+            this.setState({ staffSchema: resp.data })
+          })
   }
 
   rejectUn = (id, unid) => {
 
     // const unUrl = `http://localhost:5000/auth/unavailability/${id}/${unid}`
     const unUrl = `${process.env.REACT_APP_API_URL}/auth/unavailability/${id}/${unid}`
-
-    console.log(unid)
-
 
     const data = true
     axios.delete(unUrl, data)
@@ -74,6 +78,13 @@ export default class Approvals extends Component {
           this.setState({ error: 'unavailability was not rejected', message: null})
         }
       })
+
+      // const staffUrl = "http://localhost:5000/crew/users"
+      const staffUrl = `${process.env.REACT_APP_API_URL}/crew/users`
+        axios.get(staffUrl)
+          .then(resp => {
+            this.setState({ staffSchema: resp.data })
+          })
   }
 
   render() {

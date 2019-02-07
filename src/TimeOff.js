@@ -13,9 +13,10 @@ export default class TimeOff extends Component {
     endTime: null,
     comment: null,
     approved: null,
-    date: null
-  };
+  }
+
   handleInputChange = e => {
+
     const { value, id } = e.currentTarget;
     this.setState({ [id]: value });
   };

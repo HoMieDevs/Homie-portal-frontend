@@ -10,7 +10,7 @@ import RosterAdmin from './RosterAdmin'
 import ModalParent from './ModalParent'
 import { BrowserRouter, Route,  Redirect } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUser, faHome, faUserTimes, faSignOutAlt, faCalendarAlt, faCalendarTimes,  faClock, faSync, faChevronUp, faUserPlus, faChevronCircleRight, faChevronCircleLeft} from '@fortawesome/free-solid-svg-icons'
+import { faUser, faHome, faUserTimes, faSignOutAlt, faCalendarAlt, faCalendarTimes,  faClock, faSync, faChevronUp, faUserPlus, faChevronCircleRight, faChevronCircleLeft, faCheckCircle, faTimesCircle} from '@fortawesome/free-solid-svg-icons'
 import RosterAll from './RosterAll';
 import RosterAllTest from './RosterAllTest';
 import ReactSelect from './ReactSelect';
@@ -22,7 +22,7 @@ import ReportHours from './ReportHours';
 import AllStaff from './AllStaff';
 import Approvals from "./Approvals";
 
-library.add(faUser, faHome, faUserTimes, faSignOutAlt, faCalendarAlt, faCalendarTimes, faClock, faSync, faChevronUp, faUserPlus, faChevronCircleRight, faChevronCircleLeft );
+library.add(faUser, faHome, faUserTimes, faSignOutAlt, faCalendarAlt, faCalendarTimes, faClock, faSync, faChevronUp, faUserPlus, faChevronCircleRight, faChevronCircleLeft, faCheckCircle, faTimesCircle );
 
 const PrivateRoute =  ({ component: Component, ...rest}) => (
   <Route {...rest} render={(props) => (

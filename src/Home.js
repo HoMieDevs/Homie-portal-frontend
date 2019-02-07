@@ -15,7 +15,6 @@ export default class Home extends Component {
 
   componentDidMount = () => {
     // const rosterUrl = "http://localhost:5000/auth/roster";
-    // const rosterUrl = `${process.env.REACT_APP_DEV_API_URL}/auth/roster`
     const rosterUrl = `${process.env.REACT_APP_API_URL}/auth/roster`;
     axios.get(rosterUrl).then(resp => {
       this.setState({ rosters: resp.data });

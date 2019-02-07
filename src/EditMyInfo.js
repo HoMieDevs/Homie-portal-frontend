@@ -28,7 +28,6 @@ export default class EditMyInfo extends Component {
     const { firstName, lastName, mobile } = this.state;
     const id = this.state._id
     // const url = `http://localhost:5000/auth/user/${id}`;
-    // const url = `${process.env.REACT_APP_DEV_API_URL}/auth/user/${id}`
     console.log(url)
     const url = `${process.env.REACT_APP_API_URL}/auth/user/${id}`;
     const data = { firstName, lastName, mobile };

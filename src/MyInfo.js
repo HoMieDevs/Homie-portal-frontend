@@ -49,7 +49,7 @@ export default class MyInfo extends Component {
         <h2>My Info</h2>
         <FontAwesomeIcon className="avatarIcon" icon="user" size="2x" />
         <br />
-        <button>Edit Avatar</button>
+        <button className="myInfoButton">Edit Avatar</button>
         <div className="myInfoText">
           <p>First Name:</p>
           <p>{firstName}</p>
@@ -60,7 +60,9 @@ export default class MyInfo extends Component {
           <p>Mobile:</p>
           <p>{mobile === undefined ? "-" : mobile}</p>
         </div>
-        <button onClick={() => this.editInfo(_id)}>Edit</button>
+      
+        <button className="myInfoButton">Edit</button>
+
       </Fragment>
     );
   }

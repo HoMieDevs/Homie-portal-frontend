@@ -18,6 +18,7 @@ import ReactSelect from './ReactSelect';
 import TimeOff from './TimeOff';
 import SelectStaff from './SelectStaff';
 import MyInfo from './MyInfo';
+import EditMyInfo from './EditMyInfo'
 import ReportHours from './ReportHours';
 import AllStaff from './AllStaff';
 import Approvals from "./Approvals";
@@ -53,13 +54,13 @@ class App extends Component {
           <PrivateRoute path="/myinfo" component={MyInfo} />
           <PrivateRoute path="/report" component={ReportHours} />
           <PrivateRoute path="/roster/:id" component={Roster} />
-          <PrivateRoute exact path=“/editmyinfo” component={EditMyInfo} />
+          <PrivateRoute exact path="/editmyinfo" component={EditMyInfo} />
           <PrivateRoute path="/rosteraddstaff/:id" component={RosterAddStaff} />
           <PrivateRoute exact path="/rosteradd" component={RosterAdd} />
           <PrivateRoute path="/allstaff" component={AllStaff} />
           <PrivateRoute path="/staffselect" component={SelectStaff} />
           <PrivateRoute exact path="/modal" component={ModalParent} />
-          <PrivateRoute exact path=“/approvals” component={Approvals} />
+          <PrivateRoute exact path="/approvals" component={Approvals} />
           </div>
         </BrowserRouter>
         </div>

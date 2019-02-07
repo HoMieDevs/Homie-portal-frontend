@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import axios from "axios";
 import "./css/Register.css";
 axios.defaults.withCredentials = true;
@@ -61,16 +61,13 @@ class SubmitUnavailability extends Component {
               <li className="time-off-all-day"><span>{unavailability.allDay ? <p>All Day: Yes</p>: null }</span></li>
               <hr className="time-off-blue-line"/>
               <li className="time-off-comment"><span>Comment: </span>{unavailability.comment}</li>
-           
+           </div>
               <input
                 onClick={() => this.deleteTimeOff(unavailability._id)}
                 className="delete-button"
                 type="delete"
                 value="Delete"
               />
-
-            </div>
-     
             </Fragment>
           );
         })}

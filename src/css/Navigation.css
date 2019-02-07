@@ -92,11 +92,11 @@
   height: 4em;
   background-color: #282828;
   width: 100%;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   z-index: 10;
 }
 
-.calendar, .timeOff, .hoursNav, .homeNav {
+.calendar, .timeOff, .hoursNav, .homeNav, .addStaffNav, .approvalsNav {
   height: 100%;
   width: 100%;
   display: grid;
@@ -109,7 +109,7 @@
   text-decoration: none;
 }
 
-.calendarIcon, .unavailIcon, .clockIcon, .homeIcon {
+.calendarIcon, .unavailIcon, .clockIcon, .homeIcon, .addIcon, .approvalsIcon {
   justify-self: center;
   align-self: end;
   grid-row-start: 1;
@@ -117,7 +117,7 @@
   padding-top: none;
 }
 
-.rosterText, .timeOffText, .hoursText, .homeText {
+.rosterText, .timeOffText, .hoursText, .homeText, .addStaffText, .approvalsText {
   padding-top: .2em;
   grid-row-start: 2;
   grid-row-end: 3;

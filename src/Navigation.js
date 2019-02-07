@@ -102,14 +102,25 @@ export default class Navigation extends Component {
             <span className="timeOffText">Time Off</span>
           </NavLink>
           <NavLink
-            to="/report"
-            className="hoursNav"
+            to="/register"
+            className="addStaffNav"
             activeStyle={{
               color: "#3CBCD7"
             }}
           >
-            <FontAwesomeIcon className="clockIcon" icon="clock" size="lg" />
-            <span className="hoursText">Hours</span>
+            <FontAwesomeIcon className="addIcon" icon="user-plus" size="lg" />
+            <span className="addStaffText">Add Staff</span>
+          </NavLink>
+
+          <NavLink
+            to="/approvals"
+            className="approvalsNav"
+            activeStyle={{
+              color: "#3CBCD7"
+            }}
+          >
+            <FontAwesomeIcon className="approvalsIcon" icon="check-circle" size="lg" />
+            <span className="approvalsText">Approvals</span>
           </NavLink>
         </div>
       </React.Fragment>

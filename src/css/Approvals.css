@@ -1,0 +1,196 @@
+
+  @font-face {
+    font-family: 'Circular';
+    src: url('../fonts/Circular-Bold.woff2') format('woff2'),
+        url('../fonts/Circular-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Circular Book';
+    src: url('../fonts/Circular-Book.woff2') format('woff2'),
+        url('../fonts/Circular-Book.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  .approvals {
+    display: grid;
+    justify-content: center;	
+  }
+  
+  .allUnavailability h3 {
+    font-size: 24px;
+    font-family: 'Circular';
+    padding: 1em;
+    text-align: center;
+  }
+  
+  .approvals-container {
+    display: grid;
+    justify-content: center;
+    grid-template-rows: repeat(2, 5fr);
+    grid-row-gap: 1em;
+  }
+  .approvals-container h3 {
+    font-size: 1.5em;
+  }
+  .approvals-class-container {
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr;
+    width: 24em;
+  }
+  .allUnavailability {
+    margin-bottom: 100px;
+  }
+  .hs1 {
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+  .hs2 {
+    grid-row-start: 2;
+    grid-row-end: 3;
+  }
+  .hs3 {
+    grid-row-start: 3;
+    grid-row-end: 4;
+  }
+  .hs4 {
+    grid-row-start: 4;
+    grid-row-end: 5;
+  }
+  .hs5 {
+    grid-row-start: 5;
+    grid-row-end: 6;
+  }
+  /* .reject-button-container {
+    z-index: -1;
+    grid-column: 1 / 2;
+  } */
+  .approvals-shift {
+    z-index: 1;
+    display: grid;
+    width: 20.5em;
+    background-color: #282828;
+    border-radius: 10px;
+    grid-column: 2 / 3;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr .5fr 1fr;
+    padding: 0.5em 0;
+  }
+  .approve-button-container {
+    grid-column: 3 / 4;
+  }
+  .approvals-name {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    justify-self: center;
+    align-self: center;
+    font-size: 16px;
+    font-family: 'Circular';
+    color: #fff;
+  }
+  .approvals-date {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    justify-self: center;
+    align-self: center;
+    font-size: 16px;
+    font-family: 'Circular';
+    color: #fff;
+  }
+  
+  .blueLine {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 5;
+    justify-self: center;
+    align-self: center;
+    width: 1px;
+    height: 3em;
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+    border-left-color: #3CBCD7;
+  }
+  
+  .approvals-start-time {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    justify-self: center;
+    align-self: center;
+    font-size: 16px;
+    font-family: 'Circular Book';
+    color: #fff;
+  }
+  
+  .approvals-end-time {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 4;
+    grid-row-end: 5;
+    justify-self: center;
+    align-self: center;
+    font-size: 16px;
+    font-family: 'Circular Book';
+    color: #FFF;
+  }
+  .approvals-comment {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 5;
+    justify-self: center;
+    align-self: center;
+    font-size: 16px;
+    font-family: 'Circular Book';
+    color: #FFF;
+    padding: 2%;
+  }
+  .approve-button {
+    z-index: -1;
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 4;
+    height: 100%;
+    width: 4.625em;
+    justify-self: start;
+    background-color: #3CBCD7;
+    border-radius: 10px;
+    border: 1px solid #000;
+    display: grid;
+    margin-left: -20px;
+  }
+  .approve-button-icon {
+    align-self: center;
+    justify-self: end;
+    margin-left: 2em;
+  }
+  .reject-button {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 4;
+    height: 100%;
+    width: 4.625em;
+    justify-self: start;
+    background-color: #FF7474;
+    border-radius: 10px;
+    border: 1px solid #000;
+    display: grid;
+    margin-right: -20px;
+  }
+  .reject-button-icon {
+    align-self: center;
+    justify-self: end;
+    margin-left: 0.3em;
+  }
+  

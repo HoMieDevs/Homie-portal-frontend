@@ -36,7 +36,7 @@
   font-family: 'Circular Book';
 }
 
-button {
+.myInfoButton {
   font-family: 'Circular', sans-serif;
   text-decoration: none;
   font-size: 0.875em;
@@ -56,10 +56,10 @@ button {
   box-shadow:         inset 0px -1px 10px #333;
 }
 
-button:hover {
+.myInfoButton:hover {
   background-color: rgb(48, 159, 181);}
 
-button:active {
+.myInfoButton:active {
   background-color: rgb(43, 139, 159);
   border-color: #205260;
 }

@@ -20,7 +20,7 @@ class DeleteEmployeeModal extends Component {
           <br/>
             <h3>Staff Member:</h3>
           <br/>
-        <DropDownDelete availableStaff={this.props.availableStaff} selectStaff={this.props.selectStaff} addPlaceholder={this.props.addPlaceholder} />
+        <DropDownDelete selectStaff={this.props.selectStaff} availableStaff={this.props.availableStaff} deleteStaff={this.props.deleteStaff} addPlaceholder={this.props.deletePlaceholder} />
           <br/>
 
         <button className="delete-staff-btn" onClick={this.props.handleDelete}>- Delete</button>

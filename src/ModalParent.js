@@ -20,6 +20,7 @@ export default class ModalParent extends Component {
   state = {
     open: false,
     addPlaceholder: "Select Staff Member",
+    deleteSelected: undefined,
     addSelect: undefined,
     startTime: undefined,
     endTime: undefined,
@@ -57,16 +58,21 @@ export default class ModalParent extends Component {
 
   openDeleteEmployeeModal = ( rosterId, rosterLocation, rosterDate, e ) => {
     e.preventDefault()
-    // set state of selected roster: id, location and date
     this.setState({
       currentRosterId: rosterId,
       currentRosterLocation: rosterLocation,
       currentRosterDate: rosterDate,
       deleteEmployeeForm: true
     })
-    this.getRostersDeleteStaff(rosterLocation, rosterDate)
+    this.state.rosters.forEach(roster =>
+        roster._id === rosterId ?
+        this.setState({
+          deleteStaff: roster.staff
+        })
+        : null
+      )
   }
-
+  
   closeAddEmployeeModal = e => {
     e.preventDefault()
     this.setState({
@@ -119,15 +125,6 @@ export default class ModalParent extends Component {
         }) 
       })
   }
-  getRostersDeleteStaff = (rosterLocation, rosterDate) => {
-    const rosterDayUrl = `http://localhost:5000/auth/staff/${rosterLocation}/${rosterDate}`
-    axios.get(rosterDayUrl)
-      .then(resp => {
-        this.setState({ 
-          deleteStaff: resp.data,
-        }) 
-      })
-  }
 
   addEmployee = (staff) => {
     const url = `http://localhost:5000/auth/roster/${this.state.currentRosterId}`
@@ -146,8 +143,33 @@ export default class ModalParent extends Component {
       })
   } 
 
+  selectDeleteStaff = this.selectDeleteStaff.bind(this);
   selectStaff = this.selectStaff.bind(this);
-
+  
+  selectDeleteStaff(event) {
+    const employeeToDelete = event.target.id
+    // this.state.availableStaff.allStaff.forEach(employee =>
+    //   employee.id === addSelection ?
+    //   // employee.unavail ?
+    //   //   employee.unavail.map( un =>
+    //   //     un.date === currentRosterDate ?
+    //   //     this.setState({
+    //   //       unavailablePlaceholder: `${un.startTime} - ${un.endTime}`
+    //   //     })
+    //   //     : null
+    //   //   )
+    //     this.setState({
+    //       addPlaceholder: `Selected - ${employee.firstName} ${employee.lastName}`,
+    //       dropAddClass: "dropdown selected-add"
+    //     })
+    //   : null
+    //   )
+   this.setState({ 
+    deleteSelected: employeeToDelete,
+  }) 
+    console.log(this.state.deleteSelected);
+  }
+  
   selectStaff(event) {
     console.log(this.state.availableStaff)
     const addSelection = event.target.id
@@ -208,11 +230,23 @@ export default class ModalParent extends Component {
 
   handleDelete = (e) => {
     e.preventDefault()
-    const deleteUrl = `http://localhost:5000/auth/roster/${this.state.deleteStaff}`
-    // axios.delete(url) {
-    //   router.delete('/roster/:id/:sid', isAuthenticated, isAdmin,  (req, res) => {
-    //   const id = req.params.id
-    //   const sid = req.params.sid
+    const deleteRostId = this.state.currentRosterId
+    const deleteEmployeeId = this.state.deleteSelected
+    const deleteUrl = `http://localhost:5000/auth/roster/${deleteRostId}/${deleteEmployeeId}`
+    axios.delete(deleteUrl)
+    .then(resp => {
+      this.setState({ message: 'employee shift successfully removed', error: null})
+      console.log(resp)
+      this.getAllRosters()
+      this.getAllStaff()
+    })
+    .catch(err => {
+      if (err.response === 403) {
+        this.setState({ error: 'employee shift deletion unsuccessful', message: null})
+        console.log("put request failed")
+      }
+    })
+    
   }
 
   toggleStaffDrop = () => {
@@ -332,9 +366,10 @@ export default class ModalParent extends Component {
         open={this.state.deleteEmployeeForm} 
         onClose={this.closeDeleteEmployeeModal} 
         deleteEmployee={this.deleteEmployee}
+        selectStaff={this.selectDeleteStaff}
         availableStaff={this.state.availableStaff}
         displayStaffAvailable={this.displayStaffAvailable}
-        Staff={this.deleteStaff}
+        deleteStaff={this.state.deleteStaff}
         handleDelete={this.handleDelete}
         deletePlaceholder={this.state.deletePlaceholder}
 

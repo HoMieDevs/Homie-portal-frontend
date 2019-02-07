@@ -14,8 +14,6 @@
   font-style: normal;
 }
 
-
-
 .loginContainer {
   display: grid;
   grid-template-rows: 4fr 3fr 1fr 4fr 3fr;

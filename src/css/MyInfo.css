@@ -17,21 +17,53 @@
 .myInfoText {
   margin-top: 1em;
   display: grid;
-  grid-template-columns: 1.2fr 1.5fr;
+  grid-template-columns: 1fr 1fr 1fr 0.5fr 1fr 1fr 1fr;
   grid-template-rows: repeat(4, 1fr);
   grid-row-gap: 1.5em;
-
 }
 
 .myInfoText :nth-child(odd) {
-  grid-column-start: 1;
-  grid-column-end: 2;
+  grid-column-start: 3;
+  grid-column-end: 4;
   font-family: 'Circular';
+  text-align: right;
 }
 
 .myInfoText :nth-child(even) {
   justify-self: start;
-  grid-column-start: 2;
-  grid-column-end: 3;
+  grid-column-start: 5;
+  grid-column-end: 6;
   font-family: 'Circular Book';
+}
+
+button {
+  font-family: 'Circular', sans-serif;
+  text-decoration: none;
+  font-size: 0.875em;
+  cursor: pointer;
+  border: 1px solid #282828;
+  border-radius: 12px;
+  height: 2.6em;
+  width: 10em;
+  margin: 1.5em;
+  padding: 0;
+  outline: none;
+  overflow: hidden;
+  color: #282828;
+  background-color: #3CBCD7;
+  transition: color 0.3s 0.1s ease-out;
+  text-align: center;
+  box-shadow:         inset 0px -1px 10px #333;
+}
+
+button:hover {
+  background-color: rgb(48, 159, 181);}
+
+button:active {
+  background-color: rgb(43, 139, 159);
+  border-color: #205260;
+}
+
+.avatarIcon {
+  margin-top: 0.5em;
 }

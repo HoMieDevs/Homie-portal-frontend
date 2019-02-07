@@ -15,10 +15,11 @@
 }
 .home {
   display: grid;
-  justify-content: center;	
+  justify-content: center;
+  grid-template-columns: 1fr;
 }
 
-.home h3 {
+.home h2 {
   font-size: 24px;
   font-family: 'Circular';
   padding-top: 1em;
@@ -31,6 +32,8 @@
   justify-content: center;
   grid-template-rows: repeat(2, 5fr);
   grid-row-gap: 1em;
+  grid-column: 1;
+  grid-auto-rows: auto;
 }
 
 .hs1 {

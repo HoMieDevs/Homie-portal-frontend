@@ -38,15 +38,16 @@ export default class Home extends Component {
     return (
       <Fragment>
         <Navigation />
-        <h2>Upcoming Shifts</h2>
+        
         <div className="home">
+          <h2>Upcoming Shifts</h2>
           <div className="homeShiftContainer">
             {allRosters ? (
               allRosters.map(r => {
                 return r.staff
                   ? r.staff.map(s => {
                       return s.staffMember === currentId ? (
-                        <div className="homeShift hs1">
+                        <div className="homeShift">
                           <p className="homeDate">
                             <Moment format="ddd Do MMM" date={r.date} />{" "}
                           </p>

@@ -113,7 +113,7 @@ export default class Navigation extends Component {
           </NavLink>
         </div>
       </React.Fragment>
-    ) : (
+     : 
       <Redirect to="/" />
     );
   }

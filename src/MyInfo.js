@@ -15,9 +15,9 @@ export default class MyInfo extends Component {
   };
 
   componentDidMount = () => {
-    const myUrl = `http://localhost:5000/auth/me`
+    // const myUrl = `http://localhost:5000/auth/me`
     // const myUrl = `${process.env.REACT_APP_DEV_API_URL}/auth/me`
-    // const myUrl = `${process.env.REACT_APP_API_URL}/auth/me`;
+    const myUrl = `${process.env.REACT_APP_API_URL}/auth/me`;
     axios.get(myUrl).then(resp => {
       const { _id, firstName, lastName, email, mobile } = resp.data;
       this.setState({ _id, firstName, lastName, email, mobile });
@@ -25,8 +25,8 @@ export default class MyInfo extends Component {
   };
 
   editInfo = (id) => {
-    const url = `http://localhost:5000/auth/user/${id}`
-    // const url = `${process.env.REACT_APP_API_URL}/user/${id}`
+    // const url = `http://localhost:5000/auth/user/${id}`
+    const url = `${process.env.REACT_APP_API_URL}/user/${id}`
 
     const data = true
     axios.delete(url, data)

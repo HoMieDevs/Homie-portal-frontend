@@ -11,8 +11,8 @@ class SubmitUnavailability extends Component {
   componentDidMount() {
     const userId = localStorage.getItem("userId");
     axios
-      .get(`${process.env.REACT_APP_DEV_API_URL}/auth/unavailibility/${userId}`)
-      // .get(`${process.env.REACT_APP_API_URL}/auth/unavailibility/${userId}`)
+      // .get(`${process.env.REACT_APP_DEV_API_URL}/auth/unavailibility/${userId}`)
+      .get(`${process.env.REACT_APP_API_URL}/auth/unavailibility/${userId}`)
       .then(resp => {
         console.log(resp.data.UserUnavailability);
         const sorted = resp.data.UserUnavailability.sort((a, b) => {

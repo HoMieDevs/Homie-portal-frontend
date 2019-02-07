@@ -12,10 +12,10 @@ export default class EditMyInfo extends Component {
   };
 
   componentDidMount = () => {
-    const myUrl = `http://localhost:5000/auth/me`
+    // const myUrl = `http://localhost:5000/auth/me`
     // const myUrl = `${process.env.REACT_APP_DEV_API_URL}/auth/me`
     // console.log(myUrl)
-    // const myUrl = `${process.env.REACT_APP_API_URL}/auth/me`;
+    const myUrl = `${process.env.REACT_APP_API_URL}/auth/me`;
     axios.get(myUrl).then(resp => {
       const { _id } = resp.data;
       this.setState({ _id });
@@ -28,9 +28,9 @@ export default class EditMyInfo extends Component {
     const { firstName, lastName, mobile } = this.state;
     const id = this.state._id
     // const url = `http://localhost:5000/auth/user/${id}`;
-    const url = `${process.env.REACT_APP_DEV_API_URL}/auth/user/${id}`
+    // const url = `${process.env.REACT_APP_DEV_API_URL}/auth/user/${id}`
     console.log(url)
-    // const url = `${process.env.REACT_APP_API_URL}/auth/user/${id}`;
+    const url = `${process.env.REACT_APP_API_URL}/auth/user/${id}`;
     const data = { firstName, lastName, mobile };
     axios
       .put(url, data)

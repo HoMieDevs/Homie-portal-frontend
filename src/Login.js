@@ -17,8 +17,8 @@ export default class Login extends Component {
       email,
       password
     };
-    const url = `${process.env.REACT_APP_DEV_API_URL}/auth/login`;
-    // const url = `${process.env.REACT_APP_API_URL}/auth/login`;
+    // const url = `${process.env.REACT_APP_DEV_API_URL}/auth/login`;
+    const url = `${process.env.REACT_APP_API_URL}/auth/login`;
     axios
       .post(url, user)
       .then(resp => {

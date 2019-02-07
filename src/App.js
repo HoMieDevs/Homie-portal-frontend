@@ -5,6 +5,7 @@ import Home from "./Home";
 import Roster from "./Roster";
 import RosterAddStaff from "./RosterAddStaff";
 import RosterAdd from "./RosterAdd";
+import EditMyInfo from "./EditMyInfo";
 import RosterAdmin from "./RosterAdmin";
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -82,6 +83,7 @@ class App extends Component {
             <PrivateRoute path="/myinfo" component={MyInfo} />
             <PrivateRoute path="/report" component={ReportHours} />
             <PrivateRoute path="/roster/:id" component={Roster} />
+            <PrivateRoute exact path="/editmyinfo" component={EditMyInfo} />
             <PrivateRoute
               path="/rosteraddstaff/:id"
               component={RosterAddStaff}

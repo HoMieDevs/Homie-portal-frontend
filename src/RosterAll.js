@@ -139,8 +139,9 @@ export default class Roster extends Component {
     const allRosters = this.state.rosters;
 
     return (
-      <Fragment>
-        <Navigation />
+     <Fragment>
+        <Navigation/>
+
         <h2 className="storeHeading">Store Roster</h2>
         {/* <h3>Office Roster</h3> */}
         <div className="weekDateContainer">

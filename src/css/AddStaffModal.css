@@ -1,0 +1,48 @@
+@font-face {
+  font-family: 'Circular';
+  src: url('../fonts/Circular-Bold.woff2') format('woff2'),
+      url('../fonts/Circular-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Circular Book';
+  src: url('../fonts/Circular-Book.woff2') format('woff2'),
+      url('../fonts/Circular-Book.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.modal-header {
+  text-align: center;
+}
+
+.styles_overlay__CLSq- {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.styles_modal__gNwvD {
+  font-family: "Circular";
+  height: 19.75em;
+  width: 90vw;
+  max-width: 22em;
+  border-radius: 10px;
+}
+
+.add-staff-btn {
+  font-family: 'Circular Book';
+  font-size: 16px;
+  background-color: #282828;
+  color: #3CBCD7;
+  width: 125px;
+  height: 36px;
+  border: 3px solid #3CBCD7;
+  border-radius: 10px;
+}
+
+
+select-staff-dropdown {
+  height: 2.25em; 
+  width: 70vw; 
+}

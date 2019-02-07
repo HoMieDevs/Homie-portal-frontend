@@ -8,6 +8,7 @@
 
 // axios.defaults.withCredentials = true;
 
+
 // export default class SelectStaff extends Component {
 //   state = {
 //       value: "Please Select A Staff Member",
@@ -15,6 +16,7 @@
 //       end: "10:00",
 //       // time: '10:00',
 //   }
+
 
 //   componentDidMount = () => {
 //     const rosterDate = "2019-12-12T00:00:00.000Z"
@@ -27,6 +29,7 @@
 //       })
 //   }
 
+
 //   selectStaff = this.selectStaff.bind(this);
 
 //   selectStaff(event) {
@@ -35,6 +38,7 @@
 
 //   onChange = time => this.setState({ start: time })
 //   onChange2 = time => this.setState({ end: time })
+
 
 //   render() {
 //     console.log(this.state)
@@ -130,3 +134,4 @@
 // // logic so end time doesnt clash with unavailabilities
 // // get on submit to grab all values and submit an axios.post request with all above logic inside to stop the submit if any errors occur
 // // if staff member already has a shift on that day then they can’t be added again (either errors out or they’re disabled/hidden from selection
+

@@ -47,8 +47,6 @@ class App extends Component {
           <PrivateRoute exact path="/AddEmployeeModal" component={AddEmployeeModal} />
           <PrivateRoute path="/timeoff" component={TimeOff} />
           <PrivateRoute exact path="/rosteradmin" component={RosterAdmin} />
-
-          <PrivateRoute exact path="/roster" component={ModalParent} />
           <PrivateRoute exact path="/testroster" component={RosterAllTest} />
           <PrivateRoute path="/select" component={ReactSelect} />
           <PrivateRoute path="/myinfo" component={MyInfo} />

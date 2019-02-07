@@ -120,7 +120,8 @@ export default class ModalParent extends Component {
 
   getRostersAvailableStaff = (rosterLocation, rosterDate) => {
     // const rosterDayUrl = `http://localhost:5000/auth/staff/${rosterLocation}/${rosterDate}`
-    const rosterDayUrl = `${process.env.REACT_APP_API_URL}/${rosterLocation}/${rosterDate}`
+    const rosterDayUrl = `${process.env.REACT_APP_API_URL}/auth/staff/${rosterLocation}/${rosterDate}`
+    console.log(rosterDayUrl)
     axios.get(rosterDayUrl)
       .then(resp => {
         this.setState({ 

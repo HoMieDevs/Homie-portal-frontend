@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import axios from "axios";
+import Moment from 'react-moment'
 import "./css/Register.css";
 axios.defaults.withCredentials = true;
 
@@ -59,34 +60,21 @@ class SubmitUnavailability extends Component {
       .catch(err => console.log(err));
   };
 
-  render() {
+ render() {
     return (
       <div className="main">
         {this.state.UserUnavailability.map((unavailability, index) => {
           // console.log(unavailability.allDay)
           return (
             <Fragment>
-              <div className="individual-time-off">
-                <li className="time-off-date">
-                  <span>Date: </span> {unavailability.date}
-                </li>
-                <li className="time-off-start-time">
-                  <span>Start Time: </span> {unavailability.startTime}
-                </li>
-                <li className="time-off-end-time">
-                  <span>End Time: </span> {unavailability.endTime}
-                </li>
-                <li className="time-off-all-day">
-                  <span>
-                    {unavailability.allDay ? <p>All Day: Yes</p> : null}
-                  </span>
-                </li>
-                <hr className="time-off-blue-line" />
-                <li className="time-off-comment">
-                  <span>Comment: </span>
-                  {unavailability.comment}
-                </li>
-              </div>
+            <div className="individual-time-off">
+              <li className="time-off-date"><span>Date: </span><Moment format="ddd Do MMM" date={unavailability.date} /></li>
+              <li className="time-off-start-time"><span>Start Time: </span> {unavailability.startTime}</li>
+              <li className="time-off-end-time"><span>End Time: </span> {unavailability.endTime}</li>
+              <li className="time-off-all-day"><span>{unavailability.allDay ? <p>All Day: Yes</p>: null }</span></li>
+              <hr className="time-off-blue-line"/>
+              <li className="time-off-comment"><span>Comment: </span>{unavailability.comment}</li>
+           </div>
               <input
                 onClick={() => this.deleteTimeOff(unavailability._id)}
                 className="delete-button"

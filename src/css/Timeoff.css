@@ -44,7 +44,7 @@ grid-row-end: 6;
 margin: 0 auto;
 display: grid;
 min-height: 10em;
-width: 20.5em;
+width: 22.5em;
 background-color: #282828;
 border-radius: 10px;
 grid-template-columns: repeat(2, 1fr);
@@ -52,6 +52,7 @@ grid-auto-rows: auto;
 }
 .individual-time-off li {
 list-style: none;
+border-bottom: none;
 }
 .individual-time-off h2 {
 list-style: none;
